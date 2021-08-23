@@ -9,12 +9,12 @@
 </head>
 
 <body>
-    <h1>Movies</h1>
-    <ul>
-        <% for(let movie of movies) {%>
-        <li><%= movie.original_title %></li>
-        <% } %>
-    </ul>
+    <header>
+        <%- include('../partials/navbar') %>
+    </header>
+    <main>
+        <%- body %>
+    </main>
 </body>
 
 </html>

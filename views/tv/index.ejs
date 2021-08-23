@@ -1,0 +1,7 @@
+<% layout('layouts/boilerplate') %>
+<h1>TV Shows</h1>
+<ul>
+    <% for (let show of shows) { %>
+    <li><%= show.original_name %></li>
+    <% } %>
+</ul>
