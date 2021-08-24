@@ -1,0 +1,17 @@
+html, body {
+    font-family: 'PT Sans', sans-serif;
+    width: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+button:hover {
+    cursor: pointer;
+}
