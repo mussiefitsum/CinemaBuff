@@ -2,4 +2,4 @@
 A web application where users can browse and review movies and TV shows.
 
 ## Technologies
-Built with: ExpressJS, EJS, CSS, and TheMovieDB API
+Built with: ExpressJS, JavaScript, EJS, CSS, and TheMovieDB API
