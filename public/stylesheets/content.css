@@ -1,0 +1,30 @@
+.media-cards-container {
+    width: 90vw;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.media-card {
+    width: 185px;
+    height: 380px;
+    margin-right: 2vw;
+    margin-bottom: 5vh;
+    box-shadow: 0 0px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 8px;
+}
+
+.media-card-body {
+    word-wrap: break-word;
+}
+
+.media-card-body h4 {
+    margin-top: 10px;
+    margin-bottom: -10px;
+}
+
+span {
+    color: #FFD700;
+}

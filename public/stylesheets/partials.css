@@ -61,3 +61,12 @@ a {
 .fa-search {
     color: white;
 }
+
+footer {
+    background-color: #082d60;
+    margin-top: auto;
+}
+
+#footer-info p {
+    color: white;
+}

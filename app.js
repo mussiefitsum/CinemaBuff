@@ -28,13 +28,13 @@ app.get('/', async (req, res) => {
 });
 
 app.get('/movies', async (req, res) => {
-    const discover = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${ key }&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
+    const discover = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${ key }&language=en-US&region=US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
     const movies = discover.data.results;
     res.render('movies/index', { movies });
 });
 
 app.get('/tv', async (req, res) => {
-    const discover = await axios.get(`https://api.themoviedb.org/3/discover/tv?api_key=${ key }&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_monetization_types=flatrate`);
+    const discover = await axios.get(`https://api.themoviedb.org/3/discover/tv?api_key=${ key }&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&watch_region=US&with_watch_monetization_types=flatrate`);
     const shows = discover.data.results;
     res.render('tv/index', { shows });
 })
