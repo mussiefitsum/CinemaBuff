@@ -1,11 +1,16 @@
 <% layout('layouts/boilerplate') %>
+<link rel="stylesheet" href="/stylesheets/content.css">
 <h1>Movies</h1>
 <div class="media-cards-container">
     <% for (let movie of movies) { %>
     <div class="media-card">
-        <img src="https://image.tmdb.org/t/p/w185<%= movie.poster_path %>">
+        <a href="/movies/<%= movie.id %>">
+            <img src="https://image.tmdb.org/t/p/w185<%= movie.poster_path %>">
+        </a>
         <div class="media-card-body">
-            <h4><%= movie.title %></h4>
+            <a id="linked-title" href="/movies/<%= movie.id %>">
+                <h4><%= movie.title %></h4>
+            </a>
             <p>&#11088;<%= movie.vote_average %></p>
         </div>
     </div>

@@ -10,7 +10,7 @@ const path = require('path')
 
 app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '/views'));
+app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -37,7 +37,16 @@ app.get('/tv', async (req, res) => {
     const discover = await axios.get(`https://api.themoviedb.org/3/discover/tv?api_key=${ key }&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&watch_region=US&with_watch_monetization_types=flatrate`);
     const shows = discover.data.results;
     res.render('tv/index', { shows });
-})
+});
+
+app.get('/movies/:id', async (req, res) => {
+    const { id } = req.params;
+    const movieDetails = await axios.get(`https://api.themoviedb.org/3/movie/${ id }?api_key=${ key }&language=en-US`);
+    const credits = await axios.get(`https://api.themoviedb.org/3/movie/${ id }/credits?api_key=${ key }&language=en-US`)
+    const cast = credits.data.cast;
+    const movie = movieDetails.data;
+    res.render('movies/details', { movie, cast })
+});
 
 app.listen(3000, () => {
     console.log('Listening on Port 3000');

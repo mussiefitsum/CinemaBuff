@@ -25,6 +25,15 @@
     margin-bottom: -10px;
 }
 
+#linked-title {
+    text-decoration: none;
+    color: black;
+}
+
+#linked-title:hover {
+    color: #FF6B35;
+}
+
 span {
     color: #FFD700;
 }
