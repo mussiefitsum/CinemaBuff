@@ -1,7 +1,25 @@
-.banner-image {
-    width: 100vw;
+.media-intro {
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-between;
+    width: 80vw;
+    margin-top: 40px;
 }
 
-#banner {
-    max-width: 100%;
+.media-info {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 50vw;
+    margin-left: 30px;
+}
+
+.media-title {
+    font-size: 40px;
+    text-align: center;
+}
+
+.media-summary{
+    text-align: left;
+    font-size: 20px;
 }

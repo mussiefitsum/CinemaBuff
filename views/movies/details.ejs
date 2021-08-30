@@ -1,6 +1,15 @@
 <% layout('layouts/boilerplate') %>
-<link rel="stylesheet" href="/stylesheets/details.css">
-<div class="banner-image">
-    <img id="banner" src="https://image.tmdb.org/t/p/original<%= movie.backdrop_path %>" alt="<%= movie.title %>">
-</div>
-<h1><%= movie.title %></h1>
+<section class="media-intro">
+    <div class="media-look">
+        <div class="media-img">
+            <img src="https://image.tmdb.org/t/p/w342<%= movie.poster_path %>">
+        </div>
+        <div class="media-ratings">
+            <h3><span>&#9733;</span><%= movie.vote_average %>/10</h3>
+        </div>
+    </div>
+    <div class="media-info">
+        <h1 class="media-title"><%= movie.title %> </h1>
+        <p class="media-summary"><%= movie.overview %> </p>
+    </div>
+</section>

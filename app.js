@@ -16,13 +16,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const key = process.env.TMDB_API_KEY;
 
-const config = async () => {
-    const tool = await axios.get('https://api.themoviedb.org/3/configuration?api_key=85f4e309aef16b676f58113671a92502');
-}
-config();
-
-
-
 app.get('/', async (req, res) => {
     res.send('Home');
 });

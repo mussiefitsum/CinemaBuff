@@ -16,3 +16,7 @@ body {
 button:hover {
     cursor: pointer;
 }
+
+span {
+    color: #FFD700;
+}
