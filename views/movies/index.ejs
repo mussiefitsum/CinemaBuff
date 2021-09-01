@@ -5,7 +5,7 @@
     <% for (let movie of movies) { %>
     <div class="media-card">
         <a href="/movies/<%= movie.id %>">
-            <img src="https://image.tmdb.org/t/p/w185<%= movie.poster_path %>">
+            <img class="media-img" src="https://image.tmdb.org/t/p/w185<%= movie.poster_path %>">
         </a>
         <div class="media-card-body">
             <a id="linked-title" href="/movies/<%= movie.id %>">

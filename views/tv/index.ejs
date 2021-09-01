@@ -4,7 +4,7 @@
 <div class="media-cards-container">
     <% for (let show of shows) { %>
     <div class="media-card">
-        <img src="https://image.tmdb.org/t/p/w185<%= show.poster_path %>">
+        <img class="media-img" src="https://image.tmdb.org/t/p/w185<%= show.poster_path %>">
         <div class="media-card-body">
             <h4><%= show.name %></h4>
             <p><span>&#9733;</span><%= show.vote_average %></p>

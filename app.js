@@ -35,10 +35,14 @@ app.get('/tv', async (req, res) => {
 app.get('/movies/:id', async (req, res) => {
     const { id } = req.params;
     const movieDetails = await axios.get(`https://api.themoviedb.org/3/movie/${ id }?api_key=${ key }&language=en-US`);
-    const credits = await axios.get(`https://api.themoviedb.org/3/movie/${ id }/credits?api_key=${ key }&language=en-US`)
-    const cast = credits.data.cast;
+    const movieCredits = await axios.get(`https://api.themoviedb.org/3/movie/${ id }/credits?api_key=${ key }&language=en-US`)
+    const cast = movieCredits.data.cast;
+    const crew = movieCredits.data.crew;
     const movie = movieDetails.data;
-    res.render('movies/details', { movie, cast })
+    const genres = movieDetails.data.genres.map(x => x.name);
+    const directors = crew.filter(x => x.job === 'Director').map(x => x.name);
+    const writers = crew.filter(x => x.job === 'Writer').map(x => x.name);
+    res.render('movies/details', { movie, cast, crew, directors, writers, genres })
 });
 
 app.listen(3000, () => {

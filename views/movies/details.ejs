@@ -9,7 +9,25 @@
         </div>
     </div>
     <div class="media-info">
-        <h1 class="media-title"><%= movie.title %> </h1>
-        <p class="media-summary"><%= movie.overview %> </p>
+        <h1 class="media-title"><%= movie.title %> (<%= movie.release_date.slice(0, 4) %>)</h1>
+        <p>
+            <%= genres.join(', ') %>
+        </p>
+        <p class="media-summary"><%= movie.overview %></p>
+        <div class="media-leads">
+            <% for (let director of directors) {%>
+            <p>
+                Director: <%= director%>
+            </p>
+            <% } %>
+            <p>
+                <% if (writers.length > 1) {%>
+                Writers:
+                <% } else if (writers.length) {%>
+                Writer:
+                <% } %>
+                <%= writers.join(', ')%>
+            </p>
+        </div>
     </div>
 </section>
