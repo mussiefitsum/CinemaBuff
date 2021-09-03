@@ -16,6 +16,11 @@
     border-radius: 8px;
 }
 
+.media-img {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
 .media-card-body {
     word-wrap: break-word;
 }

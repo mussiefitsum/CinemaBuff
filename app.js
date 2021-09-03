@@ -35,14 +35,17 @@ app.get('/tv', async (req, res) => {
 app.get('/movies/:id', async (req, res) => {
     const { id } = req.params;
     const movieDetails = await axios.get(`https://api.themoviedb.org/3/movie/${ id }?api_key=${ key }&language=en-US`);
-    const movieCredits = await axios.get(`https://api.themoviedb.org/3/movie/${ id }/credits?api_key=${ key }&language=en-US`)
+    const movieCredits = await axios.get(`https://api.themoviedb.org/3/movie/${ id }/credits?api_key=${ key }&language=en-US`);
+    const movieAgeRating = await axios.get(`https://api.themoviedb.org/3/movie/${ id }/release_dates?api_key=${ key }`);
     const cast = movieCredits.data.cast;
     const crew = movieCredits.data.crew;
     const movie = movieDetails.data;
+    const ageRating = movieAgeRating.data.results.filter(x => x.iso_3166_1 === 'US').map(x => x.release_dates).flat();
     const genres = movieDetails.data.genres.map(x => x.name);
     const directors = crew.filter(x => x.job === 'Director').map(x => x.name);
     const writers = crew.filter(x => x.job === 'Writer').map(x => x.name);
-    res.render('movies/details', { movie, cast, crew, directors, writers, genres })
+    const movieRuntime = (movie.runtime / 60).toString();
+    res.render('movies/details', { movie, cast, crew, directors, writers, genres, ageRating, movieRuntime })
 });
 
 app.listen(3000, () => {

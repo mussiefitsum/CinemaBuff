@@ -10,7 +10,10 @@
     </div>
     <div class="media-info">
         <h1 class="media-title"><%= movie.title %> (<%= movie.release_date.slice(0, 4) %>)</h1>
-        <p>
+        <p class="media-runtime-rating"><%= ageRating[0].certification %> | <%= movieRuntime[0] %> Hours
+            <%= Math.round(movieRuntime.slice(1, movieRuntime.length) * 60)  %> Minutes</p>
+
+        <p class="media-genres">
             <%= genres.join(', ') %>
         </p>
         <p class="media-summary"><%= movie.overview %></p>
@@ -29,5 +32,24 @@
                 <%= writers.join(', ')%>
             </p>
         </div>
+        <div class="media-buttons-container">
+            <button class="media-btn" id="watchlist">Add to Watchlist</button>
+            <button class="media-btn" id="trailer">Watch Trailers</button>
+        </div>
+    </div>
+</section>
+<section class="media-cast">
+    <h2 class="cast-title">The Cast</h2>
+    <div class="media-cast-container">
+        <% for (let actor of cast) { %>
+        <div class="actor-card">
+            <img class="actor-img"
+                src="<%= actor.profile_path !== null ? `https://image.tmdb.org/t/p/w185${actor.profile_path}`: 'http://res.cloudinary.com/dfuxr1p10/image/upload/c_fill,h_278,w_185/v1630626598/CInemaBuff/placeholder-image-person-jpg_qa9zba.jpg'%>">
+            <div class="actor-card-body">
+                <h4><%= actor.name %></h4>
+                <p><%= actor.character %> </p>
+            </div>
+        </div>
+        <% } %>
     </div>
 </section>
