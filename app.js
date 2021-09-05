@@ -13,8 +13,13 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'node_modules')));
 
 const key = process.env.TMDB_API_KEY;
+
+import Splide from '@splidejs/splide';
+import Video from '@splidejs/splide-extension-video';
+new Splide('.splide').mount({ Video });
 
 app.get('/', async (req, res) => {
     res.send('Home');
