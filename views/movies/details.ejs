@@ -55,14 +55,31 @@
 </section>
 <section class="media-video">
     <h2>Videos</h2>
-    <div class="splide">
-        <div class="splide__track">
-            <ul class="splide__list">
-                <li class="splide__slide" data-splide-vimeo="https://vimeo.com/215334213">
-                    <img
-                        src="https://res.cloudinary.com/dfuxr1p10/image/upload/v1628030056/MyRecipe/ujl4qlucycbdzmaewpoy.jpg">
-                </li>
-            </ul>
-        </div>
+    <div class="media-video-container">
+        <video id="my-player" class="video-js" controls preload="auto" data-setup='{}'>
+            <p class="vjs-no-js">
+                To view this video please enable JavaScript, and consider upgrading to a
+                web browser that
+            </p>
+        </video>
+        <div class="vjs-playlist"></div>
+        <span id="yy" style="display:none">
+            <%= JSON.stringify(videos); %>
+        </span>
     </div>
 </section>
+<script>
+    const videos = JSON.parse(document.getElementById("yy").innerText);
+    const player = videojs('my-player');
+    const myPlaylist = [];
+    for (let video of videos) {
+        myPlaylist.push({
+            sources: [{
+                src: `https://www.youtube.com/watch?v=${ video.key }`,
+                type: 'video/youtube'
+            }]
+        });
+    }
+    player.playlist(myPlaylist)
+    videojs(document.querySelector('video')).playlistUi();
+</script>

@@ -17,9 +17,6 @@ app.use(express.static(path.join(__dirname, 'node_modules')));
 
 const key = process.env.TMDB_API_KEY;
 
-import Splide from '@splidejs/splide';
-import Video from '@splidejs/splide-extension-video';
-new Splide('.splide').mount({ Video });
 
 app.get('/', async (req, res) => {
     res.send('Home');
@@ -42,6 +39,7 @@ app.get('/movies/:id', async (req, res) => {
     const movieDetails = await axios.get(`https://api.themoviedb.org/3/movie/${ id }?api_key=${ key }&language=en-US`);
     const movieCredits = await axios.get(`https://api.themoviedb.org/3/movie/${ id }/credits?api_key=${ key }&language=en-US`);
     const movieAgeRating = await axios.get(`https://api.themoviedb.org/3/movie/${ id }/release_dates?api_key=${ key }`);
+    const movieVideos = await axios.get(`https://api.themoviedb.org/3/movie/${ id }/videos?api_key=${ key }&language=en-US`);
     const cast = movieCredits.data.cast;
     const crew = movieCredits.data.crew;
     const movie = movieDetails.data;
@@ -50,7 +48,8 @@ app.get('/movies/:id', async (req, res) => {
     const directors = crew.filter(x => x.job === 'Director').map(x => x.name);
     const writers = crew.filter(x => x.job === 'Writer').map(x => x.name);
     const movieRuntime = (movie.runtime / 60).toString();
-    res.render('movies/details', { movie, cast, crew, directors, writers, genres, ageRating, movieRuntime })
+    const videos = movieVideos.data.results;
+    res.render('movies/details', { movie, cast, crew, directors, writers, genres, ageRating, movieRuntime, videos })
 });
 
 app.listen(3000, () => {

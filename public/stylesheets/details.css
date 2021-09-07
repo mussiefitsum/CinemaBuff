@@ -121,3 +121,24 @@ h2 {
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
+
+.media-video {
+    width: 90vw;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+.media-video-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.video-js {
+    width: 70vw;
+    height: auto;
+}
+
+.vjs-playlist {
+    width: 20vw;
+}
