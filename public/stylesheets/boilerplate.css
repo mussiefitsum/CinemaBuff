@@ -17,11 +17,11 @@ button:hover {
     cursor: pointer;
 }
 
-span {
+.star {
     color: #FFD700;
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     width: 7px;
     border-radius: 15px;
 }
@@ -37,4 +37,4 @@ span {
   
 ::-webkit-scrollbar-thumb:hover {
     background: #555; 
-}
+} */

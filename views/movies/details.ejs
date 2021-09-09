@@ -5,7 +5,7 @@
             <img src="https://image.tmdb.org/t/p/w342<%= movie.poster_path %>">
         </div>
         <div class="media-ratings">
-            <h3><span>&#9733;</span><%= movie.vote_average %>/10</h3>
+            <h3><span class="star">&#9733;</span><%= movie.vote_average %>/10</h3>
         </div>
     </div>
     <div class="media-info">
@@ -56,7 +56,7 @@
 <section class="media-video">
     <h2>Videos</h2>
     <div class="media-video-container">
-        <video id="my-player" class="video-js" controls preload="auto" data-setup='{}'>
+        <video id="my-player" class="video-js vjs-theme-sea" controls preload="auto" data-setup='{}'>
             <p class="vjs-no-js">
                 To view this video please enable JavaScript, and consider upgrading to a
                 web browser that
@@ -74,12 +74,22 @@
     const myPlaylist = [];
     for (let video of videos) {
         myPlaylist.push({
+            name: video.name,
             sources: [{
                 src: `https://www.youtube.com/watch?v=${ video.key }`,
                 type: 'video/youtube'
-            }]
+            }],
+            poster: `https://img.youtube.com/vi/${ video.key }/maxresdefault.jpg`,
+            thumbnail: [
+                {
+                    srcset: `https://img.youtube.com/vi/${ video.key }/maxresdefault.jpg`,
+                    type: 'image/jpeg',
+                    media: '(min-width: 400px)'
+                }
+            ]
         });
     }
     player.playlist(myPlaylist)
+    player.playlistUi({ horizontal: true });
     videojs(document.querySelector('video')).playlistUi();
 </script>

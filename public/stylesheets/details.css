@@ -130,15 +130,30 @@ h2 {
 
 .media-video-container {
     display: flex;
+    flex-direction: column;
+    width: 90vw;
     justify-content: space-evenly;
-    flex-wrap: wrap;
+    align-items: center;
 }
 
 .video-js {
-    width: 70vw;
-    height: auto;
+    width: 80vw;
+    min-height: 70vh;
+    margin-bottom: 5px;
+    background-size: contain!important;
 }
 
 .vjs-playlist {
-    width: 20vw;
+    height: 20vh;
+    width: 80vw;
 }
+
+.vjs-playlist-title-container {
+    background-color: black;
+    overflow-wrap: break-word;
+}
+
+.vjs-playlist-title-container cite {
+    font-weight: bold!important;
+}
+
