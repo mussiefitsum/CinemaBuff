@@ -1,7 +1,17 @@
+.media {
+    width: 100vw;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.page-title {
+    font-size: 35px;
+}
+
 .media-cards-container {
     width: 90vw;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     flex-wrap: wrap;
     align-items: center;
     margin: 0 auto;
@@ -30,11 +40,11 @@
     margin-bottom: -10px;
 }
 
-#linked-title {
+.linked-title {
     text-decoration: none;
     color: black;
 }
 
-#linked-title:hover {
+.linked-title:hover {
     color: #FF6B35;
 }

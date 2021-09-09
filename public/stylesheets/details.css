@@ -28,6 +28,11 @@
     font-size: 17px;
 }
 
+.age-rating {
+    border: 2px solid rgba(0,0,0,0.7);
+    padding: 2px 5px;
+}
+
 .media-genres {
     margin-bottom: 1px;
     opacity: 0.7;
@@ -89,7 +94,7 @@
 .media-cast {
     width: 90vw;
     margin: 0 auto;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
 
 h2 {
@@ -125,7 +130,7 @@ h2 {
 .media-video {
     width: 90vw;
     margin: 0 auto;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
 
 .media-video-container {
@@ -157,3 +162,43 @@ h2 {
     font-weight: bold!important;
 }
 
+.media-similar {
+    width: 90vw;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+.similar-media-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 5px;
+}
+
+.similar-card {
+    flex: 0 0 auto;
+    width: 185px;
+    box-shadow: 0 0px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 8px;
+    margin-right: 2vw;
+    margin-bottom: 20px;
+}
+
+.similar-card-body {
+    word-wrap: break-word;
+    margin: 2px;
+}
+
+.similar-img {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.linked-title {
+    text-decoration: none;
+    color: black;
+}
+
+.linked-title:hover {
+    color: #FF6B35;
+}

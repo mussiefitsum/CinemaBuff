@@ -1,14 +1,15 @@
 <% layout('layouts/boilerplate') %>
-<link rel="stylesheet" href="/stylesheets/content.css">
-<h1>TV Shows</h1>
-<div class="media-cards-container">
-    <% for (let show of shows) { %>
-    <div class="media-card">
-        <img class="media-img" src="https://image.tmdb.org/t/p/w185<%= show.poster_path %>">
-        <div class="media-card-body">
-            <h4><%= show.name %></h4>
-            <p><span class="star">&#9733;</span><%= show.vote_average %></p>
+<section class="media">
+    <h1 class="page-title">TV Shows</h1>
+    <div class="media-cards-container">
+        <% for (let show of shows) { %>
+        <div class="media-card">
+            <img class="media-img" src="https://image.tmdb.org/t/p/w185<%= show.poster_path %>">
+            <div class="media-card-body">
+                <h4><%= show.name %></h4>
+                <p><span class="star">&#9733;</span><%= show.vote_average %></p>
+            </div>
         </div>
+        <% } %>
     </div>
-    <% } %>
-</div>
+</section>
