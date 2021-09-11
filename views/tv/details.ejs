@@ -2,37 +2,27 @@
 <section class="media-intro">
     <div class="media-look">
         <div class="media-img">
-            <img src="https://image.tmdb.org/t/p/w342<%= movie.poster_path %>">
+            <img src="https://image.tmdb.org/t/p/w342<%= show.poster_path %>">
         </div>
         <div class="media-ratings">
-            <h3><span class="star">&#9733;</span><%= movie.vote_average %>/10</h3>
+            <h3><span class="star">&#9733;</span><%= show.vote_average %>/10</h3>
         </div>
     </div>
     <div class="media-info">
-        <h1 class="media-title"><%= movie.title %> (<%= movie.release_date.slice(0, 4) %>)</h1>
-        <p class="media-runtime-rating"><span class="age-rating"><%= ageRating[0].certification %></span> |
-            <%= movieRuntime[0] %> Hours
-            <%= Math.round(movieRuntime.slice(1, movieRuntime.length) * 60)  %> Minutes</p>
-
+        <h1 class="media-title"><%= show.name %> (<%= show.first_air_date.slice(0, 4) %>)</h1>
+        <p class="media-runtime-rating"><span class="age-rating"><%= rating %></span> |
+            <%= runTime %> Minutes</p>
         <p class="media-genres">
-            <%= genres.join(', ') %>
+            <%= genres%>
         </p>
-        <p class="media-summary"><%= movie.overview %></p>
+        <p class="media-summary"><%= show.overview %></p>
+        <% if (show.created_by.length > 0) { %>
         <div class="media-leads">
-            <% for (let director of directors) {%>
-            <p>
-                Director: <%= director%>
-            </p>
+            <% for (let creator of show.created_by) {%>
+            <p>Creator: <%= creator.name %> </p>
             <% } %>
-            <p>
-                <% if (writers.length > 1) {%>
-                Writers:
-                <% } else if (writers.length) {%>
-                Writer:
-                <% } %>
-                <%= writers.join(', ')%>
-            </p>
         </div>
+        <% } %>
         <div class="media-buttons-container">
             <button class="media-btn" id="watchlist">Add to Watchlist</button>
             <button class="media-btn" id="trailer">Watch Trailers</button>
@@ -74,14 +64,14 @@
 <section class="media-similar">
     <h2>More Like This</h2>
     <div class="similar-media-container">
-        <% for (let similar of similarTitles) { %>
+        <% for (let similar of similars) { %>
         <div class="similar-card">
             <a href="/movies/<%= similar.id %> ">
                 <img class="similar-img" src="<%= `https://image.tmdb.org/t/p/w185${similar.poster_path}`%>">
             </a>
             <div class="similar-card-body">
                 <a class="linked-title" href="/movies/<%= similar.id %> ">
-                    <h4><%= similar.title %></h4>
+                    <h4><%= similar.name %></h4>
                 </a>
                 <p><span class="star">&#9733;</span><%= similar.vote_average.toFixed(1) %>/10</p>
             </div>
@@ -94,12 +84,12 @@
     <div class="rec-media-container">
         <% for (let title of recommendations) { %>
         <div class="rec-card">
-            <a href="/movies/<%= title.id %> ">
+            <a href="/tv/<%= title.id %> ">
                 <img class="rec-img" src="<%= `https://image.tmdb.org/t/p/w185${title.poster_path}`%>">
             </a>
             <div class="rec-card-body">
-                <a class="linked-title" href="/movies/<%= title.id %> ">
-                    <h4><%= title.title %></h4>
+                <a class="linked-title" href="/tv/<%= title.id %> ">
+                    <h4><%= title.name %></h4>
                 </a>
                 <p><span class="star">&#9733;</span><%= title.vote_average.toFixed(1) %>/10</p>
             </div>
