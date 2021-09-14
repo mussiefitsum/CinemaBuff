@@ -5,17 +5,38 @@ if (process.env.NODE_ENV !== "production") {
 const express = require('express');
 const app = express();
 const axios = require('axios');
-const ejsMate = require('ejs-mate')
-const path = require('path')
+const ejsMate = require('ejs-mate');
+const path = require('path');
+const passport = require('passport')
+const LocalStrategy = require('passport-local').Strategy;
+
+const User = require('./models/users')
+
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/CinemaBuff');
+const db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+    console.log('Database connected')
+});
 
 app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
 
 const key = process.env.TMDB_API_KEY;
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 
 app.get('/', async (req, res) => {
@@ -85,6 +106,10 @@ app.get('/tv/:id', async (req, res) => {
     const genres = tvDetails.data.genres.map(x => x.name).join(', ');
     const runTime = Math.round(show.episode_run_time.reduce((a, b) => a + b) / show.episode_run_time.length);
     res.render('tv/details', { show, rating, genres, cast, videos, runTime, similars, recommendations })
+})
+
+app.get('/register', async (req, res) => {
+    res.render('users/register');
 })
 
 app.listen(3000, () => {

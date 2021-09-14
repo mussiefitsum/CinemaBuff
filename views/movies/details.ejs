@@ -35,7 +35,7 @@
         </div>
         <div class="media-buttons-container">
             <button class="media-btn" id="watchlist">Add to Watchlist</button>
-            <button class="media-btn" id="trailer">Watch Trailers</button>
+            <button class="media-btn" id="trailer">Write a Review</button>
         </div>
     </div>
 </section>
@@ -71,26 +71,8 @@
     </div>
 </section>
 <% } %>
-<section class="media-similar">
-    <h2>More Like This</h2>
-    <div class="similar-media-container">
-        <% for (let similar of similarTitles) { %>
-        <div class="similar-card">
-            <a href="/movies/<%= similar.id %> ">
-                <img class="similar-img" src="<%= `https://image.tmdb.org/t/p/w185${similar.poster_path}`%>">
-            </a>
-            <div class="similar-card-body">
-                <a class="linked-title" href="/movies/<%= similar.id %> ">
-                    <h4><%= similar.title %></h4>
-                </a>
-                <p><span class="star">&#9733;</span><%= similar.vote_average.toFixed(1) %>/10</p>
-            </div>
-        </div>
-        <% } %>
-    </div>
-</section>
 <section class="media-rec">
-    <h2>Recommendedations</h2>
+    <h2>More Like This</h2>
     <div class="rec-media-container">
         <% for (let title of recommendations) { %>
         <div class="rec-card">
@@ -109,6 +91,46 @@
 </section>
 <section class="media-reviews">
     <h2>Reviews</h2>
+    <div class="media-review-container">
+        <div class="media-review-form">
+            <h3>Write a Review</h3>
+            <form class="post-review" method="POST">
+                <section class="form-group">
+                    <fieldset id="rating" class="starability-basic">
+                        <legend>Rating</legend>
+                        <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked
+                            aria-label="No rating." />
+                        <input type="radio" id="first-rate1" name="rating" value="1" />
+                        <label for="first-rate1">1 star</label>
+                        <input type="radio" id="first-rate2" name="rating" value="2" />
+                        <label for="first-rate2">2 stars</label>
+                        <input type="radio" id="first-rate3" name="rating" value="3" />
+                        <label for="first-rate3">3 stars</label>
+                        <input type="radio" id="first-rate4" name="rating" value="4" />
+                        <label for="first-rate4">4 stars</label>
+                        <input type="radio" id="first-rate5" name="rating" value="5" />
+                        <label for="first-rate5">5 stars</label>
+                        <input type="radio" id="first-rate6" name="rating" value="6" />
+                        <label for="first-rate6">6 star</label>
+                        <input type="radio" id="first-rate7" name="rating" value="7" />
+                        <label for="first-rate7">7 stars</label>
+                        <input type="radio" id="first-rate8" name="rating" value="8" />
+                        <label for="first-rate8">8 stars</label>
+                        <input type="radio" id="first-rate9" name="rating" value="9" />
+                        <label for="first-rate9">9 stars</label>
+                        <input type="radio" id="first-rate10" name="rating" value="10" />
+                        <label for="first-rate10">10 stars</label>
+                    </fieldset>
+                </section>
+                <section class="form-group">
+                    <label for="review">Review</label>
+                    <br>
+                    <textarea id="review" cols="30" row="4"></textarea>
+                </section>
+                <button class="review-submit">Submit</button>
+            </form>
+        </div>
+    </div>
 </section>
 <script>
     const videos = JSON.parse(document.getElementById("vid-data").innerText);
