@@ -68,27 +68,30 @@
     width: 190px;
     border-radius: .375rem;
     border: none;
-    font-weight: bold;
+    font-weight: 700;
     font-size: 18px;
     color: white;
-}
-
-#trailer {
-    background-color: #1A659E;
-}
-
-#trailer:hover {
-    background-color: #1f8fbf;
-}
-
-#watchlist {
     background-color: #FF6B35;
     cursor: pointer;
 }
 
-#watchlist:hover {
-    background-color: #F7C59F;
+.anchor-btn {
+    background-color: #1A659E;
+    padding: 20px 35px;
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    border-radius: .375rem;
+    border: none;
     cursor: pointer;
+}
+
+.anchor-btn:hover {
+    background-color: #1f8fbf;
+}
+
+.media-btn:hover {
+    background-color: #F7C59F;
 }
 
 .media-cast {
@@ -218,10 +221,12 @@ h2 {
     display: flex;
     flex-direction: column;
     text-align: left;
-    width: 70vw;
+    width: 80vw;
     padding: 0 30px;
     padding-bottom: 20px;
-    border: 1px solid rgba(0,0,0,.125);
+    background-color: #EEE;
+    border-radius: 14px;
+    align-self: center;
 }
 
 #rating {
@@ -231,14 +236,27 @@ h2 {
 #review {
     width: 100%;
     height: 20vh;
+    margin-top: 7px;
 }
 
 .form-group {
     margin-bottom: 20px;
 }
 
+legend {
+    font-size: 17px;
+}
+
+label {
+    font-size: 17px;
+}
+
+.review-input {
+    border-radius: 4px;
+}
+
 .review-submit {
-    background-color: #1A659E;
+    background-color: #FF6B35;
     color: white;
     font-weight: 700;
     font-size: 1rem;

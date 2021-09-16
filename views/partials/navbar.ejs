@@ -17,9 +17,18 @@
         </div>
     </nav>
     <nav class="nav-items nav-end">
+        <% if (!currentUser) { %>
+        <div class="nav-links">
+            <a href="/login">Login</a>
+        </div>
         <div class="nav-links">
             <a href="/register">Register</a>
         </div>
+        <% } else {%>
+        <div class="nav-links">
+            <a href="/logout">Logout</a>
+        </div>
+        <% } %>
         <div class="nav-links search-bar">
             <form id="search-bar">
                 <input type="text" placeholder="Search CinemaBuff" name="search">

@@ -1,21 +1,17 @@
 <% layout('layouts/boilerplate') %>
 <section class="account-form-area">
-    <div class="account-form-card">
-        <h1 class="form-title">Create Your Account</h1>
-        <form class="account-form" method="POST" action="/register">
+    <div id="login" class="account-form-card">
+        <h1 class="form-title">Login</h1>
+        <form class="account-form" method="POST" action="/login">
             <div class="form-section">
                 <label for="username">Username</label>
                 <input type="text" class="account-input" id="username" name="username" required>
             </div>
             <div class="form-section">
-                <label for="email">Email</label>
-                <input type="email" class="account-input" id="email" name="email" required>
-            </div>
-            <div class="form-section">
                 <label for="password">Password</label>
                 <input type="password" class="account-input" id="password" name="password" required>
             </div>
-            <button class="account-btn">Sign Up</button>
+            <button class="account-btn">Login</button>
         </form>
     </div>
 </section>

@@ -24,8 +24,8 @@
         </div>
         <% } %>
         <div class="media-buttons-container">
-            <button class="media-btn" id="watchlist">Add to Watchlist</button>
-            <button class="media-btn" id="trailer">Write a Review</button>
+            <button class="media-btn">Add to Watchlist</button>
+            <a class="anchor-btn" href="#review">Write a Review</a>
         </div>
     </div>
 </section>
@@ -79,6 +79,7 @@
         <% } %>
     </div>
 </section>
+<a name="review"></a>
 <section class="media-reviews">
     <h2>Reviews</h2>
     <div class="media-review-container">
@@ -115,7 +116,7 @@
                 <section class="form-group">
                     <label for="review">Review</label>
                     <br>
-                    <textarea id="review" cols="30" row="4"></textarea>
+                    <textarea class="review-input" id="review" cols="30" row="4"></textarea>
                 </section>
                 <button class="review-submit">Submit</button>
             </form>
