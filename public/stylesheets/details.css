@@ -227,6 +227,7 @@ h2 {
     background-color: #EEE;
     border-radius: 14px;
     align-self: center;
+    box-shadow: 0 0px 8px 0 rgba(0,0,0,0.2)
 }
 
 #rating {

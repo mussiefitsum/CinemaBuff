@@ -1,0 +1,18 @@
+<% if (success && success.length) { %>
+<div id="success" class="notification">
+    <i class="fas fa-check-square"></i>
+    <%= success %>
+</div>
+<div id="container">
+    <div class="spacer"></div>
+</div>
+<% } %>
+<% if (error && error.length) { %>
+<div id="error" class="notification">
+    <i class="fas fa-exclamation-triangle"></i>
+    <%= error %>
+</div>
+<div id="container">
+    <div class="spacer"></div>
+</div>
+<% } %>

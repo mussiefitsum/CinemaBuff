@@ -70,3 +70,50 @@ footer {
 #footer-info p {
     color: white;
 }
+
+.notification {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 20vw;
+    height: 10vh;
+    flex-wrap: wrap;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    position: relative;
+    padding: 0 2vw;
+    margin-bottom: 1rem;
+    left:0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: 1rem;
+    align-self: center;
+}
+
+#success {
+    background-color: #198754;
+}
+
+.fa-check-square {
+    color: #0f5132;
+    margin-right: 15px;
+}
+
+.fa-exclamation-triangle {
+    color: #842029;
+    margin-right: 15px;
+}
+
+#error {
+    background-color: #dc3545;
+}
+
+.spacer {
+    height: 50px;
+    margin: 0 0 -50px 0;
+    /* margin: 20px 0 -50px 0; use this if you want #container to have a 'bottom padding', in this case of 20px */
+    background: transparent; /* you'll need this if #container's parent element has a different background from #container itself */
+}
