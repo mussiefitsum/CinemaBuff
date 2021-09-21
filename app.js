@@ -14,7 +14,8 @@ const catchAsync = require('./utility/catchAsync');
 const flash = require('connect-flash');
 const MongoStore = require('connect-mongo');
 
-const User = require('./models/users')
+const User = require('./models/users');
+const Review = require('./models/reviews')
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/CinemaBuff');
@@ -124,7 +125,8 @@ app.get('/movies/:id', catchAsync(async (req, res) => {
     const directors = crew.filter(x => x.job === 'Director').map(x => x.name);
     const writers = crew.filter(x => x.job === 'Writer').map(x => x.name);
     const movieRuntime = (movie.runtime / 60).toString();
-    res.render('movies/details', { movie, cast, crew, directors, writers, genres, ageRating, movieRuntime, videos, similarTitles, recommendations });
+    const reviews = await Review.find({ contentId: id }).populate('author');
+    res.render('movies/details', { movie, cast, crew, directors, writers, genres, ageRating, movieRuntime, videos, similarTitles, recommendations, reviews });
 }));
 
 app.get('/tv/:id', catchAsync(async (req, res) => {
@@ -149,8 +151,31 @@ app.get('/tv/:id', catchAsync(async (req, res) => {
     }
     const genres = tvDetails.data.genres.map(x => x.name).join(', ');
     const runTime = Math.round(show.episode_run_time.reduce((a, b) => a + b) / show.episode_run_time.length);
-    res.render('tv/details', { show, rating, genres, cast, videos, runTime, similars, recommendations })
+    const reviews = await Review.find({ contentId: id }).populate('author');
+    res.render('tv/details', { show, rating, genres, cast, videos, runTime, similars, recommendations, reviews })
 }))
+
+app.post('/movies/:id/reviews', catchAsync(async (req, res) => {
+    const { id } = req.params;
+    const { rating, body } = req.body;
+    const review = new Review({ rating, body });
+    review.author = req.user._id;
+    review.contentId = id;
+    await review.save();
+    req.flash('success', 'Successfully posted review!');
+    res.redirect(`/movies/${ id }`);
+}));
+
+app.post('/tv/:id/reviews', catchAsync(async (req, res) => {
+    const { id } = req.params;
+    const { rating, body } = req.body;
+    const review = new Review({ rating, body });
+    review.author = req.user._id;
+    review.contentId = id;
+    await review.save();
+    req.flash('success', 'Successfully posted review!');
+    res.redirect(`/tv/${ id }`);
+}));
 
 app.get('/register', (req, res) => {
     res.render('users/register');

@@ -75,7 +75,7 @@
     cursor: pointer;
 }
 
-.anchor-btn {
+.link-btn {
     background-color: #1A659E;
     padding: 20px 35px;
     font-size: 18px;
@@ -86,7 +86,7 @@
     cursor: pointer;
 }
 
-.anchor-btn:hover {
+.link-btn:hover {
     background-color: #1f8fbf;
 }
 
@@ -131,9 +131,16 @@ h2 {
 }
 
 .media-video {
-    width: 90vw;
-    margin: 0 auto;
+    width: 100vw;
     margin-bottom: 50px;
+    background-color: #004E89;
+    padding-top: 2vh;
+    padding-bottom: 10vh;
+}
+
+.media-video h2 {
+    color: white;
+    margin-bottom: 30px;
 }
 
 .media-video-container {
@@ -141,19 +148,21 @@ h2 {
     flex-direction: column;
     width: 90vw;
     justify-content: space-evenly;
-    align-items: center;
+    margin: 0 auto;
 }
 
 .video-js {
     width: 80vw;
     min-height: 70vh;
     margin-bottom: 5px;
+    align-self: center;
     background-size: contain!important;
 }
 
 .vjs-playlist {
     height: 20vh;
     width: 80vw;
+    align-self: center;
 }
 
 .vjs-playlist-title-container {
@@ -207,27 +216,40 @@ h2 {
 }
 
 .media-reviews {
-    width: 90vw;
-    margin: 0 auto;
-    margin-bottom: 40px;
+    width: 100vw;
+    background-color: #004e89;
+    padding-bottom: 30px;
+    padding-top: 20px;
+}
+
+.media-reviews h2{
+    color: white;
 }
 
 .media-review-container {
     display: flex;
     flex-direction: column;
+    width: 90vw;
+    margin: 0 auto;
 }
 
-.media-review-form {
+.media-review-form, .media-review {
     display: flex;
     flex-direction: column;
     text-align: left;
     width: 80vw;
     padding: 0 30px;
     padding-bottom: 20px;
-    background-color: #EEE;
-    border-radius: 14px;
-    align-self: center;
-    box-shadow: 0 0px 8px 0 rgba(0,0,0,0.2)
+    background-color: #1a659e;
+    color: white;
+    border-radius: 4px;
+    align-self: left;
+    box-shadow: 0 0px 8px 0 rgba(0,0,0,0.2);
+    margin-bottom: 30px;
+}
+
+#reviews-display {
+    width: 60vw;
 }
 
 #rating {
@@ -265,4 +287,14 @@ label {
     height: 40px;
     border-radius: .375rem;
     border: none;
+}
+
+#locked-form {
+    width: 50%;
+}
+
+#review-login {
+    background-color: #FF6B35;
+    width: 50px;
+    padding: 10px 20px;
 }

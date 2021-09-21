@@ -36,7 +36,7 @@
         </div>
         <div class="media-buttons-container">
             <button class="media-btn">Add to Watchlist</button>
-            <a class="anchor-btn" href="#review">Write a Review</a>
+            <a class="link-btn" href="#review">Write a Review</a>
         </div>
     </div>
 </section>
@@ -57,8 +57,8 @@
 </section>
 <% if (videos.length > 0) { %>
 <section class="media-video">
-    <h2>Videos</h2>
     <div class="media-video-container">
+        <h2>Videos</h2>
         <video id="my-player" class="video-js vjs-theme-sea" controls preload="auto" data-setup='{}'>
             <p class="vjs-no-js">
                 To view this video please enable JavaScript, and consider upgrading to a
@@ -92,13 +92,14 @@
 </section>
 <a name="review"></a>
 <section class="media-reviews">
-    <h2>Reviews</h2>
     <div class="media-review-container">
+        <h2>Reviews</h2>
+        <% if (currentUser) {%>
         <div class="media-review-form">
             <h3>Write a Review</h3>
-            <form class="post-review" method="POST">
+            <form class="post-review" method="POST" action="/movies/<%= movie.id %>/reviews">
                 <section class="form-group">
-                    <fieldset id="rating" class="starability-basic">
+                    <fieldset name="rating" id="rating" class="starability-basic">
                         <legend>Rating</legend>
                         <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked
                             aria-label="No rating." />
@@ -127,11 +128,26 @@
                 <section class="form-group">
                     <label for="review">Review</label>
                     <br>
-                    <textarea class="review-input" id="review" cols="30" row="4"></textarea>
+                    <textarea name="body" class="review-input" id="review" cols="30" row="4"></textarea>
                 </section>
                 <button class="review-submit">Submit</button>
             </form>
         </div>
+        <% } else {%>
+        <div class="media-review-form" id="locked-form">
+            <h2>Login to Write A Review</h2>
+            <a class="link-btn" id="review-login" href="/login">Login</a>
+        </div>
+        <% } %>
+        <% for ( let review of reviews) {%>
+        <div id="reviews-display" class="media-review">
+            <h3><%= review.author.username %> </h3>
+            <h4 class="starability-result" data-rating="<%= review.rating %>">
+                <%= review.rating %> stars
+            </h4>
+            <p><%=review.body%></p>
+        </div>
+        <% } %>
     </div>
 </section>
 <script>
