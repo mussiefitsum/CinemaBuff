@@ -77,13 +77,11 @@
     <div class="rec-media-container">
         <% for (let title of recommendations) { %>
         <div class="rec-card">
-            <a href="/movies/<%= title.id %> ">
+            <a href="/movie/<%= title.id %> ">
                 <img class="rec-img" src="<%= `https://image.tmdb.org/t/p/w185${title.poster_path}`%>">
             </a>
             <div class="rec-card-body">
-                <a class="linked-title" href="/movies/<%= title.id %> ">
-                    <h4><%= title.title %></h4>
-                </a>
+                <h4><a class="linked-title" href="/movie/<%= title.id %> "><%= title.title %></a></h4>
                 <p><span class="star">&#9733;</span><%= title.vote_average.toFixed(1) %>/10</p>
             </div>
         </div>
@@ -130,7 +128,7 @@
                     <br>
                     <textarea name="body" class="review-input" id="review" cols="30" row="4"></textarea>
                 </section>
-                <button class="review-submit">Submit</button>
+                <button class="review-btn">Submit</button>
             </form>
         </div>
         <% } else {%>
@@ -141,11 +139,16 @@
         <% } %>
         <% for ( let review of reviews) {%>
         <div id="reviews-display" class="media-review">
-            <h3><%= review.author.username %> </h3>
+            <h3 class="author"><%= review.author.username %></h3>
             <h4 class="starability-result" data-rating="<%= review.rating %>">
                 <%= review.rating %> stars
             </h4>
-            <p><%=review.body%></p>
+            <p class="review-body"><%=review.body%></p>
+            <% if (currentUser && review.author.equals(currentUser)) { %>
+            <form action="/movies/<%= movie.id %>/reviews/<%= review.id %>?_method=DELETE" method="POST">
+                <button class="review-btn" id="delete">Delete</button>
+            </form>
+            <% } %>
         </div>
         <% } %>
     </div>

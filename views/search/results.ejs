@@ -1,0 +1,20 @@
+<% layout('layouts/boilerplate') %>
+<section class="results">
+    <h1>Search Results For: <%= query %></h1>
+    <div class="results-container">
+        <% for (let result of results) { %>
+        <div class="result-card">
+            <a href="/<%= result.media_type %>/<%= result.id %>">
+                <img class="result-img" src="https://image.tmdb.org/t/p/w154<%= result.poster_path %>" alt="">
+            </a>
+            <div class="result-card-body">
+                <h3><a class="linked-title"
+                        href="/<%= result.media_type %>/<%= result.id %>"><%= result.title || result.name %></a></h3>
+                <h4><%=result.media_type === 'movie' ? capitalize(result.media_type) : result.media_type.toUpperCase() %>
+                </h4>
+                <p><%= result.overview %></p>
+            </div>
+        </div>
+        <% } %>
+    </div>
+</section>

@@ -1,7 +1,7 @@
 <% layout('layouts/boilerplate') %>
 <%- include('../partials/flash') %>
 <section class="media">
-    <h1 class="page-title">TV Shows</h1>
+    <h1 class="page-title">Trending TV Shows</h1>
     <div class="media-cards-container">
         <% for (let show of shows) { %>
         <div class="media-card">
@@ -9,9 +9,7 @@
                 <img class="media-img" src="https://image.tmdb.org/t/p/w185<%= show.poster_path %>">
             </a>
             <div class="media-card-body">
-                <a class="linked-title" href="/tv/<%= show.id %>">
-                    <h4><%= show.name %></h4>
-                </a>
+                <h4><a class="linked-title" href="/tv/<%= show.id %>"><%= show.name %></a></h4>
                 <p><span class="star">&#9733;</span><%= show.vote_average %></p>
             </div>
         </div>

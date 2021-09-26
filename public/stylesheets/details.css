@@ -278,7 +278,7 @@ label {
     border-radius: 4px;
 }
 
-.review-submit {
+.review-btn {
     background-color: #FF6B35;
     color: white;
     font-weight: 700;
@@ -297,4 +297,16 @@ label {
     background-color: #FF6B35;
     width: 50px;
     padding: 10px 20px;
+}
+
+.author {
+    margin-bottom: 2px;
+}
+
+.review-body {
+    font-size: 18px;
+}
+
+#delete {
+    background-color: #dc3545;
 }

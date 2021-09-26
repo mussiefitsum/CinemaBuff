@@ -1,17 +1,15 @@
 <% layout('layouts/boilerplate') %>
 <%- include('../partials/flash') %>
 <section class="media">
-    <h1 class="page-title">Movies</h1>
+    <h1 class="page-title">Trending Movies</h1>
     <div class="media-cards-container">
         <% for (let movie of movies) { %>
         <div class="media-card">
-            <a href="/movies/<%= movie.id %>">
+            <a href="/movie/<%= movie.id %>">
                 <img class="media-img" src="https://image.tmdb.org/t/p/w185<%= movie.poster_path %>">
             </a>
             <div class="media-card-body">
-                <a class="linked-title" href="/movies/<%= movie.id %>">
-                    <h4><%= movie.title %></h4>
-                </a>
+                <h4><a class="linked-title" href="/movie/<%= movie.id %>"><%= movie.title %></a></h4>
                 <p><span class="star">&#9733;</span><%= movie.vote_average %></p>
             </div>
         </div>

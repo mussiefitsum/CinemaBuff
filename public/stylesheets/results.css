@@ -1,0 +1,45 @@
+.results {
+    width: 90vw;
+    margin: 0 auto;
+}
+
+.results h1 {
+    text-align: left;
+    margin-bottom: 40px;
+    font-size: 30px;
+}
+
+.results-container {
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    margin: 0 auto;
+}
+
+.result-img {
+    margin-right: 30px;
+    border-top-left-radius: .375rem;
+    border-bottom-left-radius: .375rem;
+}
+
+.result-card {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 40px;
+    box-shadow: 0 0 8px 0 rgba(0,0,0,0.2);
+    padding-right: 30px;
+    border-radius: .375rem;
+    max-height: 231px;
+}
+
+.result-card-body {
+    text-align: left;
+}
+
+.result-card-body h3:hover {
+    color: #ff6b35;
+}
+
+.result-card-body h4 {
+    opacity: 0.7;
+}

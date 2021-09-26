@@ -10,7 +10,7 @@
             <a href="/home">Home</a>
         </div>
         <div class="nav-links">
-            <a href="/movies">Movies</a>
+            <a href="/movie">Movies</a>
         </div>
         <div class="nav-links">
             <a href="/tv">TV Shows</a>
@@ -30,8 +30,8 @@
         </div>
         <% } %>
         <div class="nav-links search-bar">
-            <form id="search-bar">
-                <input type="text" placeholder="Search CinemaBuff" name="search">
+            <form id="search-bar" action="/results">
+                <input type="search" placeholder="Search" name="q">
                 <button><i class="fas fa-search"></i></button>
             </form>
         </div>

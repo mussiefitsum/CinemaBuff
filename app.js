@@ -13,6 +13,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const catchAsync = require('./utility/catchAsync');
 const flash = require('connect-flash');
 const MongoStore = require('connect-mongo');
+const methodOverride = require('method-override');
 
 const User = require('./models/users');
 const Review = require('./models/reviews')
@@ -53,6 +54,7 @@ const sessionConfig = {
 }
 
 app.use(session(sessionConfig));
+app.use(methodOverride('_method'))
 app.use(flash());
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, 'public')));
@@ -88,7 +90,7 @@ app.get('/', async (req, res) => {
     res.send('Home');
 });
 
-app.get('/movies', catchAsync(async (req, res) => {
+app.get('/movie', catchAsync(async (req, res) => {
     const discoverOne = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${ key }&language=en-US&region=US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate`);
     const discoverTwo = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${ key }&language=en-US&region=US&sort_by=popularity.desc&include_adult=false&include_video=false&page=2&with_watch_monetization_types=flatrate`);
     const movies = discoverOne.data.results;
@@ -106,7 +108,15 @@ app.get('/tv', catchAsync(async (req, res) => {
     res.render('tv/index', { shows });
 }));
 
-app.get('/movies/:id', catchAsync(async (req, res) => {
+app.get('/results', async (req, res) => {
+    const query = req.query.q;
+    const searchResults = await axios.get(`https://api.themoviedb.org/3/search/multi?api_key=${ key }&language=en-US&query=${ query }&page=1&include_adult=false&region=US`);
+    const results = searchResults.data.results.filter(x => x.media_type !== 'person' && x.poster_path !== null && x.release_date !== '');
+    const capitalize = (str) => str[0].toUpperCase() + str.slice(1);
+    res.render('search/results', { results, query, capitalize })
+});
+
+app.get('/movie/:id', catchAsync(async (req, res) => {
     const { id } = req.params;
     const movieDetails = await axios.get(`https://api.themoviedb.org/3/movie/${ id }?api_key=${ key }&language=en-US`);
     const movieCredits = await axios.get(`https://api.themoviedb.org/3/movie/${ id }/credits?api_key=${ key }&language=en-US`);
@@ -155,7 +165,7 @@ app.get('/tv/:id', catchAsync(async (req, res) => {
     res.render('tv/details', { show, rating, genres, cast, videos, runTime, similars, recommendations, reviews })
 }))
 
-app.post('/movies/:id/reviews', catchAsync(async (req, res) => {
+app.post('/movie/:id/reviews', catchAsync(async (req, res) => {
     const { id } = req.params;
     const { rating, body } = req.body;
     const review = new Review({ rating, body });
@@ -163,6 +173,13 @@ app.post('/movies/:id/reviews', catchAsync(async (req, res) => {
     review.contentId = id;
     await review.save();
     req.flash('success', 'Successfully posted review!');
+    res.redirect(`/movies/${ id }`);
+}));
+
+app.delete('/movie/:id/reviews/:reviewId', catchAsync(async (req, res) => {
+    const { reviewId, id } = req.params;
+    await Review.findByIdAndDelete(reviewId);
+    req.flash('success', 'Successfully deleted review!');
     res.redirect(`/movies/${ id }`);
 }));
 
@@ -174,6 +191,13 @@ app.post('/tv/:id/reviews', catchAsync(async (req, res) => {
     review.contentId = id;
     await review.save();
     req.flash('success', 'Successfully posted review!');
+    res.redirect(`/tv/${ id }`);
+}));
+
+app.delete('/tv/:id/reviews/:reviewId', catchAsync(async (req, res) => {
+    const { reviewId, id } = req.params;
+    await Review.findByIdAndDelete(reviewId);
+    req.flash('success', 'Successfully deleted review!');
     res.redirect(`/tv/${ id }`);
 }));
 
