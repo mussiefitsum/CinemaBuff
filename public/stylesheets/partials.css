@@ -75,15 +75,14 @@ footer {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    width: 20vw;
-    height: 10vh;
+    width: 30vw;
     flex-wrap: wrap;
     border-radius: 8px;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 700;
     color: white;
     position: relative;
-    padding: 0 2vw;
+    padding: 5vh 3vw;
     margin-bottom: 1rem;
     left:0;
     right:0;
@@ -91,6 +90,7 @@ footer {
     margin-right:auto;
     margin-top: 1rem;
     align-self: center;
+    text-align: center;
 }
 
 #success {

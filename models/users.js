@@ -13,6 +13,10 @@ const userSchema = Schema({
         type: String,
         require: true,
         unique: true
+    },
+
+    watchlist: {
+        type: [String]
     }
 })
 

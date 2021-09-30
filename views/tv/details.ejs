@@ -25,7 +25,16 @@
         </div>
         <% } %>
         <div class="media-buttons-container">
-            <button class="media-btn">Add to Watchlist</button>
+            <% if (!currentUser.watchlist.includes(show.id)) { %>
+            <form action="/user/<%= currentUser.id %>/watchlist" method="POST">
+                <button name="media" value="t<%= show.id %>" class="media-btn">Add to Watchlist</button>
+            </form>
+            <% } else { %>
+            <form action="/user/<%= currentUser.id %>/watchlist?_method=DELETE" method="POST">
+                <button name="media" value="t<%= show.id %>" class="media-btn" id="delete-watchlist">Remove
+                    from Watchlist</button>
+            </form>
+            <% } %>
             <a class="link-btn" href="#review">Write a Review</a>
         </div>
     </div>

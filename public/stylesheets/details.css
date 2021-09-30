@@ -75,6 +75,14 @@
     cursor: pointer;
 }
 
+#delete-watchlist {
+    background-color: #dc3545;
+}
+
+#delete-watchlist:hover {
+    background-color: #e6737e;
+}
+
 .link-btn {
     background-color: #1A659E;
     padding: 20px 35px;

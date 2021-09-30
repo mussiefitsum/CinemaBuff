@@ -234,6 +234,45 @@ app.post('/register', catchAsync(async (req, res) => {
     }
 }));
 
+app.get('/user/:id/watchlist', async (req, res) => {
+    const { id } = req.params;
+    const user = await User.findById(id);
+    const { watchlist } = user;
+    const collection = [];
+    for (let mediaId of watchlist) {
+        if (mediaId[0] === 'm') {
+            let movie = await axios.get(`https://api.themoviedb.org/3/movie/${ mediaId.slice(1) }?api_key=${ key }&language=en-US`);
+            collection.push(movie.data);
+        } else {
+            let tv = await axios.get(`https://api.themoviedb.org/3/tv/${ mediaId.slice(1) }?api_key=${ key }&language=en-US`);
+            collection.push(tv.data);
+        }
+    }
+    console.log(collection);
+    res.render('users/watchlist', { collection });
+});
+
+app.post('/user/:id/watchlist', async (req, res) => {
+    const { id } = req.params;
+    const { media } = req.body;
+    const user = await User.findById(id);
+    user.watchlist.push(media);
+    await user.save();
+    console.log(user);
+    req.flash('success', 'Content has been added to your watchlist!');
+    res.redirect(`/movie`);
+})
+
+app.delete('/user/:id/watchlist', async (req, res) => {
+    const { id } = req.params;
+    const { media } = req.body;
+    const user = await User.findById(id);
+    user.watchlist = user.watchlist.filter(x => x !== media);
+    await user.save();
+    req.flash('success', 'Content has been removed from your watchlist!');
+    res.redirect(`/movie`);
+})
+
 app.get('/login', (req, res) => {
     res.render('users/login');
 });
