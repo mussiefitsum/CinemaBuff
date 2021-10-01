@@ -25,7 +25,7 @@
         </div>
         <% } %>
         <div class="media-buttons-container">
-            <% if (!currentUser.watchlist.includes(show.id)) { %>
+            <% if (!currentUser.watchlist.includes(`t${show.id}`)) { %>
             <form action="/user/<%= currentUser.id %>/watchlist" method="POST">
                 <button name="media" value="t<%= show.id %>" class="media-btn">Add to Watchlist</button>
             </form>

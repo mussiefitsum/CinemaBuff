@@ -248,7 +248,6 @@ app.get('/user/:id/watchlist', async (req, res) => {
             collection.push(tv.data);
         }
     }
-    console.log(collection);
     res.render('users/watchlist', { collection });
 });
 
@@ -258,9 +257,8 @@ app.post('/user/:id/watchlist', async (req, res) => {
     const user = await User.findById(id);
     user.watchlist.push(media);
     await user.save();
-    console.log(user);
     req.flash('success', 'Content has been added to your watchlist!');
-    res.redirect(`/movie`);
+    res.redirect(`/user/${ id }/watchlist`);
 })
 
 app.delete('/user/:id/watchlist', async (req, res) => {
@@ -270,7 +268,7 @@ app.delete('/user/:id/watchlist', async (req, res) => {
     user.watchlist = user.watchlist.filter(x => x !== media);
     await user.save();
     req.flash('success', 'Content has been removed from your watchlist!');
-    res.redirect(`/movie`);
+    res.redirect(`/user/${ id }/watchlist`);
 })
 
 app.get('/login', (req, res) => {
