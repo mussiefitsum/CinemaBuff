@@ -87,7 +87,9 @@ const isLoggedIn = (req, res, next) => {
 
 
 app.get('/', async (req, res) => {
-    res.send('Home');
+    const trendingMedia = await axios.get(`https://api.themoviedb.org/3/trending/movie/week?api_key=${ key }`);
+    const trending = trendingMedia.data.results.filter(x => x.media_type !== 'person').slice(0, 5);
+    res.render('home', { trending });
 });
 
 app.get('/movie', catchAsync(async (req, res) => {
@@ -195,7 +197,7 @@ app.delete('/movie/:id/reviews/:reviewId', catchAsync(async (req, res) => {
     res.redirect(`/movie/${ id }`);
 }));
 
-app.post('/tv/:id/reviews', catchAsync(async (req, res) => {
+app.post('/tv/:id/reviews', isLoggedIn, catchAsync(async (req, res) => {
     const { id } = req.params;
     const { rating, body } = req.body;
     const review = new Review({ rating, body });
@@ -251,7 +253,7 @@ app.get('/user/:id/watchlist', async (req, res) => {
     res.render('users/watchlist', { collection });
 });
 
-app.post('/user/:id/watchlist', async (req, res) => {
+app.post('/user/:id/watchlist', isLoggedIn, async (req, res) => {
     const { id } = req.params;
     const { media } = req.body;
     const user = await User.findById(id);

@@ -1,5 +1,11 @@
 <% layout('layouts/boilerplate') %>
 <%- include('../partials/flash') %>
+<% if (!currentUser) { %>
+<div class="watchlist-notification">
+    <p>Want to add this to your watchlist? <a href="/login">Login</a> or <a href="/register">sign up</a> to take
+        advantage!</p>
+</div>
+<% } %>
 <section class="media-intro">
     <div class="media-look">
         <div class="media-img">
@@ -35,14 +41,14 @@
             </p>
         </div>
         <div class="media-buttons-container">
-            <% if (!currentUser.watchlist.includes(`m${movie.id}`)) { %>
-            <form action="/user/<%= currentUser.id %>/watchlist" method="POST">
-                <button name="media" value="m<%= movie.id %>" class="media-btn">Add to Watchlist</button>
-            </form>
-            <% } else { %>
+            <% if (currentUser && currentUser.watchlist.includes(`m${movie.id}`)) { %>
             <form action="/user/<%= currentUser.id %>/watchlist?_method=DELETE" method="POST">
                 <button name="media" value="m<%= movie.id %>" class="media-btn" id="delete-watchlist">Remove
                     from Watchlist</button>
+            </form>
+            <% } else if (currentUser) { %>
+            <form action="/user/<%= currentUser.id %>/watchlist" method="POST">
+                <button name="media" value="m<%= movie.id %>" class="media-btn">Add to Watchlist</button>
             </form>
             <% } %>
             <a class="link-btn" href="#review">Write a Review</a>

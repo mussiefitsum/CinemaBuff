@@ -3,8 +3,26 @@
     margin: 0 auto;
     justify-content: space-between;
     width: 80vw;
-    margin-top: 40px;
+    margin-top: 60px;
     margin-bottom: 40px;
+}
+
+.watchlist-notification{
+    width: 100vw;
+    background-color: #FF6B35;
+    font-weight: 700;
+    font-size: 20px;
+    position: absolute;
+    color: white;
+}
+
+.watchlist-notification a {
+    color: white;
+    text-decoration: underline;
+}
+
+.watchlist-notification a:hover {
+    color: #1A659E
 }
 
 .media-info {

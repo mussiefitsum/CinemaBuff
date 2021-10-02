@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/home.css">
+    <link rel="stylesheet" href="/@splidejs/splide/dist/css/splide.min.css">
+    <script src="/@splidejs/splide/dist/js/splide.min.js"></script>
+    <script src="https://kit.fontawesome.com/dbfc7aa0af.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <div class="nav-links brand">
+                <a id="logo" href=""><img alt="CinemaBuff Logo"
+                        src="https://res.cloudinary.com/dfuxr1p10/image/upload/v1629755949/CInemaBuff/popcorn_ztg5pt.png"
+                        width="50" height="50">
+                </a>
+            </div>
+            <nav class="nav-items">
+                <div class="nav-links">
+                    <a href="/">Home</a>
+                </div>
+                <div class="nav-links">
+                    <a href="/movie">Movies</a>
+                </div>
+                <div class="nav-links">
+                    <a href="/tv">TV Shows</a>
+                </div>
+            </nav>
+            <nav class="nav-items nav-end">
+                <% if (!currentUser) { %>
+                <div class="nav-links">
+                    <a href="/login">Login</a>
+                </div>
+                <div class="nav-links">
+                    <a href="/register">Register</a>
+                </div>
+                <% } else {%>
+                <div class="nav-links">
+                    <a href="/user/<%= currentUser.id %>/watchlist">Watchlist</a>
+                </div>
+                <div class="nav-links">
+                    <a href="/logout">Logout</a>
+                </div>
+                <% } %>
+                <div class="nav-links search-bar">
+                    <form id="search-bar" action="/results">
+                        <input type="search" placeholder="Search" name="q">
+                        <button><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <%- include('partials/flash') %>
+    <div id="splide" class="splide">
+        <div class="splide__track">
+            <ul class="splide__list">
+                <% for (let media of trending) { %>
+                <li class="splide__slide">
+                    <img class="slide-img" src="https://image.tmdb.org/t/p/original<%= media.backdrop_path %>">
+                </li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum rerum possimus consequatur suscipit reprehenderit
+        sit
+        deleniti asperiores dicta veniam quo quibusdam nesciunt, ipsa tempore molestiae natus temporibus inventore
+        explicabo
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quos praesentium fugiat illo debitis, quibusdam
+        tempore numquam ducimus quis nam asperiores et, molestiae similique, dignissimos corrupti illum a. Expedita,
+        odio!
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, illum, quod minus cum incidunt consequatur
+        modi
+        porro eos odio necessitatibus tempora aut, in ipsa unde labore nobis facere reprehenderit. Nobis. Lorem ipsum,
+        dolor
+        sit amet consectetur adipisicing elit. Assumenda nemo rem quae cum vitae quo corporis iste, animi aliquam esse
+        qui
+        facilis molestias sed repellat hic ex odio, fugiat consectetur?
+    </p>
+    <script>
+        new Splide('.splide', {
+            arrows: 'slider',
+            width: '100vw',
+            cover: true,
+            heightRatio: .45,
+        }).mount();
+    </script>
+</body>
+
+</html>
