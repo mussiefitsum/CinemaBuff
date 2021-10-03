@@ -87,9 +87,13 @@ const isLoggedIn = (req, res, next) => {
 
 
 app.get('/', async (req, res) => {
-    const trendingMedia = await axios.get(`https://api.themoviedb.org/3/trending/movie/week?api_key=${ key }`);
-    const trending = trendingMedia.data.results.filter(x => x.media_type !== 'person').slice(0, 5);
-    res.render('home', { trending });
+    const trendingMedia = await axios.get(`https://api.themoviedb.org/3/trending/all/day?api_key=${ key }`);
+    const popularMovies = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${ key }&language=en-US&page=1&region=US`);
+    const popularShows = await axios.get(`https://api.themoviedb.org/3/tv/popular?api_key=${ key }&language=en-US&page=1`);
+    const trending = trendingMedia.data.results.filter(x => x.media_type !== 'person').slice(0, 6);
+    const movies = popularMovies.data.results;
+    const shows = popularShows.data.results;
+    res.render('home', { trending, movies, shows });
 });
 
 app.get('/movie', catchAsync(async (req, res) => {

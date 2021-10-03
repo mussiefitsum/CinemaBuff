@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>CinemaBuff</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="/stylesheets/home.css">
+    <link rel="stylesheet" href="/stylesheets/content.css">
     <link rel="stylesheet" href="/@splidejs/splide/dist/css/splide.min.css">
     <script src="/@splidejs/splide/dist/js/splide.min.js"></script>
     <script src="https://kit.fontawesome.com/dbfc7aa0af.js" crossorigin="anonymous"></script>
@@ -20,7 +21,7 @@
     <header>
         <div class="navbar">
             <div class="nav-links brand">
-                <a id="logo" href=""><img alt="CinemaBuff Logo"
+                <a id="logo" href="/"><img alt="CinemaBuff Logo"
                         src="https://res.cloudinary.com/dfuxr1p10/image/upload/v1629755949/CInemaBuff/popcorn_ztg5pt.png"
                         width="50" height="50">
                 </a>
@@ -67,33 +68,49 @@
             <ul class="splide__list">
                 <% for (let media of trending) { %>
                 <li class="splide__slide">
+                    <div class="content">
+                        <h1 class="slider-media-title"><%= media.title || media.name %></h1>
+                        <p class="slider-media-summary"><%= media.overview.slice(0, 180) + '...' %></p>
+                        <a class="slider-btn" href="/<%= media.media_type %>/<%= media.id %> ">View More</a>
+                    </div>
                     <img class="slide-img" src="https://image.tmdb.org/t/p/original<%= media.backdrop_path %>">
                 </li>
                 <% } %>
             </ul>
         </div>
     </div>
-
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum rerum possimus consequatur suscipit reprehenderit
-        sit
-        deleniti asperiores dicta veniam quo quibusdam nesciunt, ipsa tempore molestiae natus temporibus inventore
-        explicabo
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quos praesentium fugiat illo debitis, quibusdam
-        tempore numquam ducimus quis nam asperiores et, molestiae similique, dignissimos corrupti illum a. Expedita,
-        odio!
-    </p>
-    <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, illum, quod minus cum incidunt consequatur
-        modi
-        porro eos odio necessitatibus tempora aut, in ipsa unde labore nobis facere reprehenderit. Nobis. Lorem ipsum,
-        dolor
-        sit amet consectetur adipisicing elit. Assumenda nemo rem quae cum vitae quo corporis iste, animi aliquam esse
-        qui
-        facilis molestias sed repellat hic ex odio, fugiat consectetur?
-    </p>
+    <section class="media">
+        <h2 class="section-title">Popular Movies</h2>
+        <div class="popular">
+            <% for (let movie of movies) { %>
+            <div class="popular-card">
+                <img class="media-img" src="https://image.tmdb.org/t/p/w185<%= movie.poster_path %>">
+                <div class="media-card-body">
+                    <h4><%= movie.title %></h4>
+                    <p><span class="star">&#9733;</span><%= movie.vote_average %></p>
+                </div>
+            </div>
+            <% } %>
+        </div>
+        <h2 class="section-title">Popular TV Shows</h2>
+        <div class="popular">
+            <% for (let show of shows) { %>
+            <div class="popular-card">
+                <img class="media-img" src="https://image.tmdb.org/t/p/w185<%= show.poster_path %>">
+                <div class="media-card-body">
+                    <h4><%= show.name %></h4>
+                    <p><span class="star">&#9733;</span><%= show.vote_average %></p>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </section>
+    <%- include('./partials/footer') %>
     <script>
         new Splide('.splide', {
-            arrows: 'slider',
+            arrows: false,
+            type: 'loop',
+            autoplay: true,
             width: '100vw',
             cover: true,
             heightRatio: .45,
