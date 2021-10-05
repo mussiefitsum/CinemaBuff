@@ -5,6 +5,15 @@ html, body {
    scroll-behavior: smooth;
 }
 
+body {
+   display: flex;
+   width: 100vw;
+   min-height: 100vh;
+   flex-direction: column;
+   margin: 0 auto;
+   text-align: center;
+}
+
 ::placeholder { 
    color: white;
    opacity: 1; 
@@ -21,8 +30,9 @@ html, body {
    font-weight: 700;
  }
 
- .header {
-    position: absolute;
+ header {
+    position: relative;
+    width: 100vw;
  }
 
 .navbar {
@@ -30,7 +40,6 @@ html, body {
    padding: 16px;
    position: absolute;
    z-index: 1;
-   background-color: transparent;
    flex-wrap: wrap;
    width: 100%;
    left: 1%;
@@ -67,6 +76,10 @@ html, body {
    margin-right: 2vw;
 }
 
+.nav-link-toggle {
+   display: none;
+}
+
 #search-bar input {
    padding: 6px;
    margin-top: 8px;
@@ -97,11 +110,49 @@ html, body {
 }
 
 
-body {
-   display: flex;
-   min-height: 100vh;
-   flex-direction: column;
-   margin: 0 auto;
+@media (max-width: 768px) {
+   .navbar, .nav-items {
+       flex-direction: column;
+       left: 0;
+   }
+
+   .nav-background {
+      background-color: #004E89;
+   }
+   
+   .nav-items {
+       display: none;
+   }
+
+   .nav-end {
+       margin-left: 0;
+   }
+
+   .nav-link-toggle-show {
+      display: flex;
+      background-color: #004E89;
+   }
+
+   .nav-link-toggle {
+       align-self: flex-end;
+       display: initial;
+       position: absolute;
+       cursor: pointer;
+       color: #F48046;
+       margin-right: 10vw;
+   }
+
+   .nav-link-toggle:focus + .navbar {
+      background-color: #004E89;
+  }
+
+   #search-bar input {
+      background-color: white;
+   }
+
+   .brand {
+      align-self: flex-start;
+  }
 }
 
 .splide {
@@ -121,6 +172,7 @@ body {
 .slider-media-title {
    color: white;
    font-size: 50px;
+   margin-bottom: -1vh;
 }
 
 .slider-media-summary {
@@ -140,12 +192,46 @@ body {
 }
 
 .content {
+   display: flex;
+   flex-direction: column;
+   flex-wrap: wrap;
+   align-items: flex-start;
    position: absolute;
    width: 50%;
    height: 100%;
    text-align: left;
-   left: 7%;
+   left: 4%;
    top: 36%;
+}
+
+@media (max-width: 1024px) {
+   .content {
+      width: 60%;
+   }
+
+   .section-title {
+      margin-left: 0px; 
+   }
+}
+
+@media (max-width: 568px) {
+   .slider-media-title {
+      font-size: 36px;
+   }
+
+   .slider-media-summary {
+      font-size: 18px;
+      margin-bottom: 2vh;
+   }
+   .slider-btn {
+      padding: 7px 14px;
+      border-radius: .375rem;
+      font-weight: 700;
+   }
+   .content {
+      width: 92%;
+      top: 35%;
+   }
 }
 
 .popular {
@@ -174,6 +260,19 @@ body {
    margin-bottom: 25px;
    text-align: left;
    margin-left: 75px;
+}
+
+@media (max-width: 1024px) {
+   .section-title {
+      margin-left: 50px; 
+   }
+}
+
+@media (max-width: 1024px) {
+   .section-title {
+      margin-left: 0;
+      text-align: center; 
+   }
 }
 
 .popular-title {

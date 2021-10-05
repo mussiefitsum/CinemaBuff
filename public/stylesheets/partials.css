@@ -38,6 +38,42 @@ a {
     margin-left: auto;
 }
 
+.nav-link-toggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .navbar, .nav-items {
+        flex-direction: column;
+    }
+    
+    .nav-items {
+        display: none;
+    }
+
+    .nav-end {
+        margin-left: 0;
+    }
+
+    .nav-link-toggle-show {
+        display: flex;
+    }
+
+    .nav-link-toggle {
+        align-self: flex-end;
+        display: initial;
+        position: absolute;
+        cursor: pointer;
+        color: #F48046;
+    }
+}
+
+@media (max-width: 430px) {
+    .brand {
+        align-self: flex-start;
+    }
+}
+
 #search-bar input {
     padding: 6px;
     margin-top: 8px;

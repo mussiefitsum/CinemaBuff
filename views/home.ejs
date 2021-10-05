@@ -26,6 +26,9 @@
                         width="50" height="50">
                 </a>
             </div>
+            <div class="nav-links nav-link-toggle">
+                <i class="fas fa-bars fa-3x"></i>
+            </div>
             <nav class="nav-items">
                 <div class="nav-links">
                     <a href="/">Home</a>
@@ -70,7 +73,7 @@
                 <li class="splide__slide">
                     <div class="content">
                         <h1 class="slider-media-title"><%= media.title || media.name %></h1>
-                        <p class="slider-media-summary"><%= media.overview.slice(0, 180) + '...' %></p>
+                        <p class="slider-media-summary"><%= media.overview.slice(0, 135) + '...' %></p>
                         <a class="slider-btn" href="/<%= media.media_type %>/<%= media.id %> ">View More</a>
                     </div>
                     <img class="slide-img" src="https://image.tmdb.org/t/p/original<%= media.backdrop_path %>">
@@ -84,9 +87,11 @@
         <div class="popular">
             <% for (let movie of movies) { %>
             <div class="popular-card">
-                <img class="media-img" src="https://image.tmdb.org/t/p/w185<%= movie.poster_path %>">
+                <a href="/movie/<%= movie.id %>">
+                    <img class="media-img" src="https://image.tmdb.org/t/p/w185<%= movie.poster_path %>">
+                </a>
                 <div class="media-card-body">
-                    <h4><%= movie.title %></h4>
+                    <h4><a class="linked-title" href="/movie/<%= movie.id %>"><%= movie.title %></a></h4>
                     <p><span class="star">&#9733;</span><%= movie.vote_average %></p>
                 </div>
             </div>
@@ -96,9 +101,11 @@
         <div class="popular">
             <% for (let show of shows) { %>
             <div class="popular-card">
-                <img class="media-img" src="https://image.tmdb.org/t/p/w185<%= show.poster_path %>">
+                <a href="/tv/<%= show.id %>">
+                    <img class="media-img" src="https://image.tmdb.org/t/p/w185<%= show.poster_path %>">
+                </a>
                 <div class="media-card-body">
-                    <h4><%= show.name %></h4>
+                    <h4><a class="linked-title" href="/tv/<%= show.id %>"><%= show.name %></a></h4>
                     <p><span class="star">&#9733;</span><%= show.vote_average %></p>
                 </div>
             </div>
@@ -111,11 +118,11 @@
             arrows: false,
             type: 'loop',
             autoplay: true,
-            width: '100vw',
             cover: true,
-            heightRatio: .45,
+            height: '85vh',
         }).mount();
     </script>
+    <script src="/javascripts/navbar.js"></script>
 </body>
 
 </html>
