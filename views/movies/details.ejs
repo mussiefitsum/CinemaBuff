@@ -8,8 +8,8 @@
 <% } %>
 <section class="media-intro">
     <div class="media-look">
-        <div class="media-img">
-            <img src="https://image.tmdb.org/t/p/w342<%= movie.poster_path %>">
+        <div class="media-img-details">
+            <img class="media-poster" src="https://image.tmdb.org/t/p/w342<%= movie.poster_path %>">
         </div>
         <div class="media-ratings">
             <h3><span class="star">&#9733;</span><%= movie.vote_average %>/10</h3>
@@ -155,9 +155,11 @@
         <% for ( let review of reviews) {%>
         <div id="reviews-display" class="media-review">
             <h3 class="author"><%= review.author.username %></h3>
-            <h4 class="starability-result" data-rating="<%= review.rating %>">
-                <%= review.rating %> stars
-            </h4>
+            <div class="star-result">
+                <img class="star"
+                    src="https://res.cloudinary.com/dfuxr1p10/image/upload/v1633405939/CInemaBuff/star_xgtd28.png">
+                <span class="rating-number"><%= review.rating %>/10</span>
+            </div>
             <p class="review-body"><%=review.body%></p>
             <% if (currentUser && review.author.equals(currentUser)) { %>
             <form action="/movies/<%= movie.id %>/reviews/<%= review.id %>?_method=DELETE" method="POST">

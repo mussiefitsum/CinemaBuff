@@ -44,3 +44,17 @@
 .result-card-body h4 {
     opacity: 0.7;
 }
+
+@media (max-width: 578px) {
+    .result-overview {
+        display: none;
+    }
+
+    .result-img {
+        width: 120px;
+    }
+
+    .result-card-body h3 {
+        font-size: 20px;
+    }
+}

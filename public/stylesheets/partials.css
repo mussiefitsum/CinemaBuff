@@ -72,6 +72,10 @@ a {
     .brand {
         align-self: flex-start;
     }
+
+    #search-bar input {
+        width: 76%;
+    }
 }
 
 #search-bar input {

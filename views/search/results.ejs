@@ -10,9 +10,10 @@
             <div class="result-card-body">
                 <h3><a class="linked-title"
                         href="/<%= result.media_type %>/<%= result.id %>"><%= result.title || result.name %></a></h3>
-                <h4><%=result.media_type === 'movie' ? capitalize(result.media_type) : result.media_type.toUpperCase() %>
+                <h4>
+                    <%=result.media_type === 'movie' ? capitalize(result.media_type) : result.media_type.toUpperCase() %>
                 </h4>
-                <p><%= result.overview %></p>
+                <p class="result-overview"><%= result.overview.substr(0, 185) + '...' %></p>
             </div>
         </div>
         <% } %>

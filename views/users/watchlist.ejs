@@ -8,11 +8,11 @@
             <a href="/<%= media.name ? 'tv' : 'movie' %>/<%= media.id %> "><img class="watchlist-img"
                     src="https://image.tmdb.org/t/p/w154<%= media.poster_path %>" alt=""></a>
             <div class="watchlist-card-body">
-                <h3><a class="linked-title"
+                <h3 class="watchlist-title"><a class="linked-title"
                         href="/<%= media.name ? 'tv' : 'movie' %>/<%= media.id %>"><%= media.title || media.name %></a>
                 </h3>
-                <h4><%= media.name ? 'TV' : 'Movie' %></h4>
-                <p><%= media.overview.substr(0, 185) + '...' %></p>
+                <h4 class="watchlist-media"><%= media.name ? 'TV' : 'Movie' %></h4>
+                <p class="watchlist-overview"><%= media.overview.substr(0, 185) + '...' %></p>
                 <form action="/user/<%= currentUser.id %>/watchlist?_method=DELETE" method="POST">
                     <button name="media" value="<%= media.name ? `t${media.id}` : `m${media.id}`  %>"
                         class="watchlist-btn">Remove</button>

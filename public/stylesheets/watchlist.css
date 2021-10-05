@@ -64,3 +64,41 @@
     border: none;
     border-radius: .375rem;
 }
+
+@media (max-width: 1030px) {
+    .watchlist-card {
+        width: 80vw;
+    }
+
+}
+
+@media (max-width: 780px) {
+    .watchlist-img {
+        width: 140px;
+    }
+}
+
+
+@media (max-width: 450px) {
+    .watchlist-overview {
+        display: none;
+    }
+
+    .watchlist h1 {
+        text-align: center;
+        margin-bottom: 40px;
+        font-size: 30px;
+    }
+
+    .watchlist-img {
+        width: 120px;
+    }
+
+    .watchlist-title {
+        font-size: 23px;
+    }
+
+    .watchlist-media {
+        font-size: 18px;
+    }
+}

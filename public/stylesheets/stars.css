@@ -233,3 +233,9 @@
       display: none;
     }
   }
+
+  @media (max-width: 425px) {
+    .starability-basic {
+      width: 20px;
+    }
+  }
