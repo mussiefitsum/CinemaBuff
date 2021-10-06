@@ -4,10 +4,11 @@ if (process.env.NODE_ENV !== "production") {
 
 const express = require('express');
 const session = require('express-session');
+const mongoSanitize = require('express-mongo-sanitize');
 const app = express();
-const axios = require('axios');
 const ejsMate = require('ejs-mate');
 const path = require('path');
+const ExpressError = require('./utility/ExpressError');
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy;
 const flash = require('connect-flash');
@@ -15,7 +16,6 @@ const MongoStore = require('connect-mongo');
 const methodOverride = require('method-override');
 
 const User = require('./models/users');
-const Review = require('./models/reviews')
 
 const centralRoutes = require('./routes/central');
 const movieRoutes = require('./routes/movie');
@@ -58,13 +58,12 @@ const sessionConfig = {
 }
 
 app.use(session(sessionConfig));
-app.use(methodOverride('_method'))
+app.use(mongoSanitize());
+app.use(methodOverride('_method'));
 app.use(flash());
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
-
-const key = process.env.TMDB_API_KEY;
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -84,6 +83,22 @@ app.use('/', centralRoutes);
 app.use('/movie', movieRoutes);
 app.use('/tv', tvRoutes);
 app.use('/user', userRoutes);
+
+app.all('*', (req, res, next) => {
+    next(new ExpressError('Page Not Found', 404));
+});
+
+app.use('*', (req, res, next) => {
+    next(new ExpressError('Page Not Found', 404));
+});
+
+app.use((err, req, res, next) => {
+    const { statusCode = 500 } = err;
+    if (!err.message) {
+        err.message = 'Oh No. Something Went Wrong.'
+    }
+    res.status(statusCode).render('error', { err });
+});
 
 app.listen(3000, () => {
     console.log('Listening on Port 3000');

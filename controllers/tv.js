@@ -50,8 +50,8 @@ module.exports.displayTvDetails = async (req, res) => {
 
 module.exports.createReview = async (req, res) => {
     const { id } = req.params;
-    const { rating, body } = req.body;
-    const review = new Review({ rating, body });
+    console.log(req.body);
+    const review = new Review(req.body.review);
     review.author = req.user._id;
     review.contentId = id;
     await review.save();

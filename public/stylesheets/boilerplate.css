@@ -21,6 +21,29 @@ button:hover {
     color: #FFD700;
 }
 
+.page-error {
+    width: 80vw;
+    background-color: #f8d7da;
+    color: #842029;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: .375rem;
+}
+
+.error-container {
+    display: flex;
+    width: 100vw;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.error-heading {
+    font-size: 35px;
+}
+
 /* ::-webkit-scrollbar {
     width: 7px;
     border-radius: 15px;
