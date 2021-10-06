@@ -147,9 +147,11 @@
         <% for ( let review of reviews) {%>
         <div id="reviews-display" class="media-review">
             <h3 class="author"><%= review.author.username %> </h3>
-            <h4 class="starability-result" data-rating="<%= review.rating %>">
-                <%= review.rating %> stars
-            </h4>
+            <div class="star-result">
+                <img class="star"
+                    src="https://res.cloudinary.com/dfuxr1p10/image/upload/v1633405939/CInemaBuff/star_xgtd28.png">
+                <span class="rating-number"><%= review.rating %>/10</span>
+            </div>
             <p class="review-body"><%=review.body%></p>
             <% if (currentUser && review.author.equals(currentUser)) { %>
             <form action="/tv/<%= show.id %>/reviews/<%= review.id %>?_method=DELETE" method="POST">

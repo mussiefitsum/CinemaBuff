@@ -12,7 +12,7 @@
 .results-container {
     display: flex;
     flex-direction: column;
-    width: 80vw;
+    width: 85vw;
     margin: 0 auto;
 }
 
@@ -53,8 +53,10 @@
     .result-img {
         width: 120px;
     }
+}
 
+@media (max-width: 340px) {
     .result-card-body h3 {
-        font-size: 20px;
+        font-size: 15px;
     }
 }

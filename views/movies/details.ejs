@@ -110,7 +110,7 @@
         <% if (currentUser) {%>
         <div class="media-review-form">
             <h3>Write a Review</h3>
-            <form class="post-review" method="POST" action="/movies/<%= movie.id %>/reviews">
+            <form class="post-review" method="POST" action="/movie/<%= movie.id %>/reviews">
                 <section class="form-group">
                     <fieldset name="rating" id="rating" class="starability-basic">
                         <legend>Rating</legend>
@@ -162,7 +162,7 @@
             </div>
             <p class="review-body"><%=review.body%></p>
             <% if (currentUser && review.author.equals(currentUser)) { %>
-            <form action="/movies/<%= movie.id %>/reviews/<%= review.id %>?_method=DELETE" method="POST">
+            <form action="/movie/<%= movie.id %>/reviews/<%= review.id %>?_method=DELETE" method="POST">
                 <button class="review-btn" id="delete">Delete</button>
             </form>
             <% } %>

@@ -42,42 +42,6 @@ a {
     display: none;
 }
 
-@media (max-width: 768px) {
-    .navbar, .nav-items {
-        flex-direction: column;
-    }
-    
-    .nav-items {
-        display: none;
-    }
-
-    .nav-end {
-        margin-left: 0;
-    }
-
-    .nav-link-toggle-show {
-        display: flex;
-    }
-
-    .nav-link-toggle {
-        align-self: flex-end;
-        display: initial;
-        position: absolute;
-        cursor: pointer;
-        color: #F48046;
-    }
-}
-
-@media (max-width: 430px) {
-    .brand {
-        align-self: flex-start;
-    }
-
-    #search-bar input {
-        width: 76%;
-    }
-}
-
 #search-bar input {
     padding: 6px;
     margin-top: 8px;
@@ -156,4 +120,55 @@ footer {
     margin: 0 0 -50px 0;
     /* margin: 20px 0 -50px 0; use this if you want #container to have a 'bottom padding', in this case of 20px */
     background: transparent; /* you'll need this if #container's parent element has a different background from #container itself */
+}
+
+@media (max-width: 768px) {
+    .navbar, .nav-items {
+        flex-direction: column;
+    }
+    
+    .nav-items {
+        display: none;
+    }
+
+    .nav-end {
+        margin-left: 0;
+    }
+
+    .nav-link-toggle-show {
+        display: flex;
+    }
+
+    .nav-link-toggle {
+        align-self: flex-end;
+        display: initial;
+        position: absolute;
+        cursor: pointer;
+        color: #F48046;
+    }
+
+    .notification {
+        width: 70vw;
+    }
+}
+
+@media (max-width: 430px) {
+    .brand {
+        align-self: flex-start;
+    }
+
+    #search-bar input {
+        width: 76%;
+    }
+
+    .notification {
+        width: 90vw;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 350px) {
+    .notification {
+        font-size: 12px;
+    }
 }

@@ -95,10 +95,20 @@
     }
 
     .watchlist-title {
-        font-size: 23px;
+        font-size: 14px;
+    }
+
+    .watchlist-card-body h4 {
+        font-size: 13px;
     }
 
     .watchlist-media {
         font-size: 18px;
+    }
+
+    .watchlist-btn {
+        height: 25px;
+        width: 80px;
+        font-size: 11px;
     }
 }

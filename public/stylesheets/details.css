@@ -291,6 +291,10 @@ h2 {
     margin-top: 7px;
 }
 
+.rating-number {
+    font-weight: 700;
+}
+
 .form-group {
     margin-bottom: 20px;
 }
