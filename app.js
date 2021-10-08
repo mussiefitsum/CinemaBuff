@@ -14,6 +14,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const flash = require('connect-flash');
 const MongoStore = require('connect-mongo');
 const methodOverride = require('method-override');
+const helmet = require('helmet')
 
 const User = require('./models/users');
 
@@ -23,7 +24,9 @@ const tvRoutes = require('./routes/tv');
 const userRoutes = require('./routes/watchlist')
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/CinemaBuff');
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/CinemaBuff';
+
+mongoose.connect(dbUrl);
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -35,13 +38,17 @@ app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-const secret = 'topsecret15'
+const secret = process.env.SECRET || 'topsecret15'
 
 const store = MongoStore.create({
-    mongoUrl: 'mongodb://localhost:27017/CinemaBuff',
+    mongoUrl: dbUrl,
     secret,
     touchAfter: 24 * 60 * 60
 });
+
+store.on('error', function (e) {
+    console.log('SESSION STORE ERROR', e);
+})
 
 const sessionConfig = {
     store,
@@ -59,8 +66,10 @@ const sessionConfig = {
 
 app.use(session(sessionConfig));
 app.use(mongoSanitize());
+app.use(helmet({ contentSecurityPolicy: false, }));
 app.use(methodOverride('_method'));
 app.use(flash());
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
