@@ -119,6 +119,10 @@ body {
    .nav-background {
       background-color: #004E89;
    }
+
+   #search-bar input {
+      color: black;
+   }
    
    .nav-items {
        display: none;
