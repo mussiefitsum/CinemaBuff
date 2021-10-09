@@ -55,6 +55,7 @@
         </div>
     </div>
 </section>
+<% if (cast.length) { %>
 <section class="media-cast">
     <h2 class="cast-title">The Cast</h2>
     <div class="media-cast-container">
@@ -70,6 +71,7 @@
         <% } %>
     </div>
 </section>
+<% } %>
 <% if (videos.length > 0) { %>
 <section class="media-video">
     <div class="media-video-container">
@@ -87,6 +89,7 @@
     </div>
 </section>
 <% } %>
+<% if (recommendations.length) { %>
 <section class="media-rec">
     <h2>More Like This</h2>
     <div class="rec-media-container">
@@ -103,6 +106,7 @@
         <% } %>
     </div>
 </section>
+<% } %>
 <a name="review"></a>
 <section class="media-reviews">
     <div class="media-review-container">
