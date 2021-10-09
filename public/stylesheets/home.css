@@ -73,6 +73,7 @@ body {
 
 .nav-end {
    margin-left: auto;
+   margin-right: 2vw;
 }
 
 .nav-link-toggle {
@@ -138,7 +139,6 @@ body {
        position: absolute;
        cursor: pointer;
        color: #F48046;
-       margin-right: 15vw;
    }
 
    .nav-link-toggle:focus + .navbar {
