@@ -5,12 +5,15 @@ if (process.env.NODE_ENV !== "production") {
     require('dotenv').config();
 }
 
+// Fetch API key
 const key = process.env.TMDB_API_KEY;
 
 module.exports.displayHome = async (req, res) => {
     const trendingMedia = await axios.get(`https://api.themoviedb.org/3/trending/all/day?api_key=${ key }`);
     const popularMovies = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${ key }&language=en-US&page=1&region=US`);
     const popularShows = await axios.get(`https://api.themoviedb.org/3/tv/popular?api_key=${ key }&language=en-US&page=1`);
+
+    // Limits the amount of trending results for top slider to 6 items
     const trending = trendingMedia.data.results.filter(x => x.media_type !== 'person').slice(0, 6);
     const movies = popularMovies.data.results;
     const shows = popularShows.data.results;
@@ -20,6 +23,8 @@ module.exports.displayHome = async (req, res) => {
 module.exports.displayResults = async (req, res) => {
     const query = req.query.q;
     const searchResults = await axios.get(`https://api.themoviedb.org/3/search/multi?api_key=${ key }&language=en-US&query=${ query }&page=1&include_adult=false&region=US`);
+
+    // Filters out results that aren't valid Movies and TV Shows
     const results = searchResults.data.results.filter(x => x.media_type !== 'person' && x.poster_path !== null && x.release_date !== '');
     const capitalize = (str) => str[0].toUpperCase() + str.slice(1);
     res.render('search/results', { results, query, capitalize })
@@ -30,6 +35,7 @@ module.exports.registerForm = (req, res) => {
 }
 
 module.exports.registerUser = async (req, res) => {
+    // Grabs register form information and creates a new user, logs them in, and redirects them.
     try {
         const { email, username, password } = req.body;
         const user = new User({ email, username });
@@ -53,6 +59,8 @@ module.exports.loginForm = (req, res) => {
 
 module.exports.loginUser = async (req, res) => {
     req.flash('success', 'Welcome Back!')
+
+    // Redirects to previous session upon login otherwise user is redirected to movie page 
     const redirectUrl = req.session.returnTo || '/movie';
     delete req.session.returnTo;
     res.redirect(redirectUrl);

@@ -1,10 +1,19 @@
+// Closes notifications after 5 seconds
+const notification = document.querySelector('.notification');
+const watchlist = document.querySelector('.watchlist-notfication')
+
 function closeFlash() {
-    document.querySelector('.notification').style.display = 'none';
+    notification.style.display = 'none';
 }
 
 function closePopup() {
-    document.querySelector('.watchlist-notification').style.display = 'none';
+    watchlist.style.display = 'none';
 }
 
-window.setTimeout(closeFlash, 5000);
-window.setTimeout(closePopup, 5000);
+if (notification !== null) {
+    window.setTimeout(closeFlash, 5000);
+}
+
+if (watchlist !== null) {
+    window.setTimeout(closePopup, 5000);
+}

@@ -181,7 +181,7 @@ h2 {
 }
 
 .video-js {
-    width: 80vw;
+    width: 85vw;
     min-height: 70vh;
     margin-bottom: 5px;
     align-self: center;
@@ -190,7 +190,7 @@ h2 {
 
 .vjs-playlist {
     height: 20vh;
-    width: 80vw;
+    width: 85vw;
     align-self: center;
 }
 
@@ -397,7 +397,7 @@ label {
     }
 
     .media-poster {
-        width: 235px;
+        width: 270px;
     }
 
     .media-buttons-container {
@@ -410,8 +410,7 @@ label {
     }
 
     .vjs-playlist {
-        height: 15vh;
-        width: 80vw;
+        width: 85vw;
     }
 
 }

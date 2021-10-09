@@ -28,19 +28,17 @@ module.exports.displayTvDetails = async (req, res) => {
         const show = tvDetails.data;
         const cast = credits.data.cast;
         const videos = tvVideos.data.results
-        const ratings = tvAgeRating.data.results
+        let ratings = tvAgeRating.data.results
         const similars = similarShows.data.results;
         const recommendations = recommendedShows.data.results;
-        let rating = ratings.find(x => x.iso_3166_1 === 'US');
-        if (rating === undefined) {
-            rating = ratings.pop().rating;
-        } else {
-            rating = rating.rating;
-        }
+        ratings = ratings.filter(x => x.iso_3166_1 === 'US');
+        console.log(ratings);
         const genres = tvDetails.data.genres.map(x => x.name).join(', ');
         const runTime = Math.round(show.episode_run_time.reduce((a, b) => a + b) / show.episode_run_time.length);
+
+        // Grab reviews that have the correct Movie ID
         const reviews = await Review.find({ contentId: id }).populate('author');
-        res.render('tv/details', { show, rating, genres, cast, videos, runTime, similars, recommendations, reviews })
+        res.render('tv/details', { show, ratings, genres, cast, videos, runTime, similars, recommendations, reviews })
     } catch (e) {
         console.log(e);
         req.flash('error', 'Oops something went wrong!');

@@ -28,6 +28,7 @@
 }
 
 .media-img {
+    width: 185px;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
@@ -50,4 +51,30 @@
 
 .linked-title:hover {
     color: #FF6B35;
+}
+
+@media (max-width: 426px) {
+    .media-card {
+        width: 250px;
+    }
+
+    #index-image {
+        width: 250px;
+    }
+
+    .media-card-body {
+        margin: 0 6px;
+    }
+
+    .media-card-body h4 {
+        font-size: 19px;
+    }
+
+    .media-card-body p {
+        font-size: 18px;
+    }
+
+    .media-card-body span {
+        font-size: 24px;
+    }
 }

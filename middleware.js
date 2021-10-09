@@ -2,6 +2,7 @@ const ExpressError = require('./utility/ExpressError');
 const { reviewSchema } = require('./schema');
 const Review = require('./models/reviews')
 
+// Checks if user is logged in before hitting a route that requires user authorization
 module.exports.isLoggedIn = (req, res, next) => {
     if (!req.isAuthenticated()) {
         req.session.returnTo = req.originalUrl;
@@ -11,6 +12,7 @@ module.exports.isLoggedIn = (req, res, next) => {
     next();
 }
 
+// Checks if review contains the necessary information before hitting post route
 module.exports.validateReviewSchema = (req, res, next) => {
     const { error } = reviewSchema.validate(req.body);
     if (error) {

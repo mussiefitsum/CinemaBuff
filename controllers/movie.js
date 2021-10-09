@@ -36,6 +36,8 @@ module.exports.displayMovieDetails = async (req, res) => {
         const directors = crew.filter(x => x.job === 'Director').map(x => x.name);
         const writers = crew.filter(x => x.job === 'Writer').map(x => x.name);
         const movieRuntime = (movie.runtime / 60).toString();
+
+        // Grab reviews that have the correct Movie ID
         const reviews = await Review.find({ contentId: id }).populate('author');
         res.render('movies/details', { movie, cast, crew, directors, writers, genres, ageRating, movieRuntime, videos, similarTitles, recommendations, reviews });
     } catch (e) {

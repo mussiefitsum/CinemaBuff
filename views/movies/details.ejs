@@ -17,7 +17,8 @@
     </div>
     <div class="media-info">
         <h1 class="media-title"><%= movie.title %> (<%= movie.release_date.slice(0, 4) %>)</h1>
-        <p class="media-runtime-rating"><span class="age-rating"><%= ageRating[0].certification %></span> |
+        <p class="media-runtime-rating"><span
+                class="age-rating"><%= ageRating[0].certification !== '' ? ageRating[0].certification : 'NR' %></span> |
             <%= movieRuntime[0] %> Hours
             <%= Math.round(movieRuntime.slice(1, movieRuntime.length) * 60)  %> Minutes</p>
 

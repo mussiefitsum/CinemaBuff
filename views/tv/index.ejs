@@ -6,7 +6,7 @@
         <% for (let show of shows) { %>
         <div class="media-card">
             <a href="/tv/<%= show.id %>">
-                <img class="media-img" src="https://image.tmdb.org/t/p/w185<%= show.poster_path %>">
+                <img class="media-img" id="index-image" src="https://image.tmdb.org/t/p/w342<%= show.poster_path %>">
             </a>
             <div class="media-card-body">
                 <h4><a class="linked-title" href="/tv/<%= show.id %>"><%= show.name %></a></h4>

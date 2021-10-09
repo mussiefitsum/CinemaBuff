@@ -17,7 +17,8 @@
     </div>
     <div class="media-info">
         <h1 class="media-title"><%= show.name %> (<%= show.first_air_date.slice(0, 4) %>)</h1>
-        <p class="media-runtime-rating"><span class="age-rating"><%= rating %></span> |
+        <p class="media-runtime-rating"><span class="age-rating"><%= ratings.length ? ratings[0].rating : 'NR' %></span>
+            |
             <%= runTime %> Minutes</p>
         <p class="media-genres">
             <%= genres%>
