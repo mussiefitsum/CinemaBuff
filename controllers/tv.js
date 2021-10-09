@@ -32,7 +32,6 @@ module.exports.displayTvDetails = async (req, res) => {
         const similars = similarShows.data.results;
         const recommendations = recommendedShows.data.results;
         ratings = ratings.filter(x => x.iso_3166_1 === 'US');
-        console.log(ratings);
         const genres = tvDetails.data.genres.map(x => x.name).join(', ');
         const runTime = Math.round(show.episode_run_time.reduce((a, b) => a + b) / show.episode_run_time.length);
 
@@ -48,7 +47,6 @@ module.exports.displayTvDetails = async (req, res) => {
 
 module.exports.createReview = async (req, res) => {
     const { id } = req.params;
-    console.log(req.body);
     const review = new Review(req.body.review);
     review.author = req.user._id;
     review.contentId = id;
