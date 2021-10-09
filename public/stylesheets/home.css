@@ -138,6 +138,7 @@ body {
        display: initial;
        position: absolute;
        cursor: pointer;
+       right: 8%;
        color: #F48046;
    }
 
