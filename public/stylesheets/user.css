@@ -56,3 +56,10 @@
     padding-top: 10vh;
     height: 100vh;
 }
+
+@media (max-width: 768px) {
+    .account-form-card {
+        padding: 3vh 10vw;
+        padding-bottom: 18vh;
+    }
+}
