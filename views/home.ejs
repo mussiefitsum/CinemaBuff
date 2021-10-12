@@ -93,7 +93,7 @@
                 </a>
                 <div class="media-card-body">
                     <h4><a class="linked-title" href="/movie/<%= movie.id %>"><%= movie.title %></a></h4>
-                    <p><span class="star">&#9733;</span><%= movie.vote_average %></p>
+                    <p><i class="fas fa-star"></i> <%= movie.vote_average %></p>
                 </div>
             </div>
             <% } %>
@@ -107,7 +107,7 @@
                 </a>
                 <div class="media-card-body">
                     <h4><a class="linked-title" href="/tv/<%= show.id %>"><%= show.name %></a></h4>
-                    <p><span class="star">&#9733;</span><%= show.vote_average %></p>
+                    <p><i class="fas fa-star"></i> <%= show.vote_average %></p>
                 </div>
             </div>
             <% } %>

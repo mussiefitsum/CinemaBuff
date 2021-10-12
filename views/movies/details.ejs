@@ -12,7 +12,7 @@
             <img class="media-poster" src="https://image.tmdb.org/t/p/w342<%= movie.poster_path %>">
         </div>
         <div class="media-ratings">
-            <h3><span class="star">&#9733;</span><%= movie.vote_average %>/10</h3>
+            <h3><i class="fas fa-star"></i> <%= movie.vote_average %>/10</h3>
         </div>
     </div>
     <div class="media-info">
@@ -101,7 +101,7 @@
             </a>
             <div class="rec-card-body">
                 <h4><a class="linked-title" href="/movie/<%= title.id %> "><%= title.title %></a></h4>
-                <p><span class="star">&#9733;</span><%= title.vote_average.toFixed(1) %>/10</p>
+                <p><i class="fas fa-star"></i> <%= title.vote_average.toFixed(1) %>/10</p>
             </div>
         </div>
         <% } %>

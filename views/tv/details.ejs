@@ -12,7 +12,7 @@
             <img class="media-poster" src="https://image.tmdb.org/t/p/w342<%= show.poster_path %>">
         </div>
         <div class="media-ratings">
-            <h3><span class="star">&#9733;</span><%= show.vote_average %>/10</h3>
+            <h3><i class="fas fa-star"></i> <%= show.vote_average %>/10</h3>
         </div>
     </div>
     <div class="media-info">
@@ -93,7 +93,7 @@
                 <a class="linked-title" href="/tv/<%= title.id %> ">
                     <h4><%= title.name %></h4>
                 </a>
-                <p><span class="star">&#9733;</span><%= title.vote_average.toFixed(1) %>/10</p>
+                <p><i class="fas fa-star"></i> <%= title.vote_average.toFixed(1) %>/10</p>
             </div>
         </div>
         <% } %>
