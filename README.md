@@ -1,7 +1,7 @@
 # CinemaBuff
 A web application where users can browse and review movies and TV shows. Users can also add movies and shows to their watchlist.
 
-Demo Link: https://cinema-buff.herokuapp.com/
+Demo Link: https://cinema-buff.onrender.com/
 
 ## Technologies
 - TheMovieDB API
